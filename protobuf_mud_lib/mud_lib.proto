@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+package mud;
+
+message player {
+	string name = 1;
+	string passwordHash = 2;
+	int64 id = 3;
+	repeated int64 idCharacters = 4;
+}
+
+message playerBook {
+	repeated player players = 1;
+}
+
+enum direction {
+	NORTH = 0;
+	SOUTH = 1;
+	EAST = 2;
+	WEST = 3;
+}
+
+message attribute {
+	enum attribute_name {
+		LIFE = 0;
+		STRENGTH = 1;
+		AGILITY = 2;
+		INTELLIGENCE = 3;
+	}
+	
+	attribute_name name = 1;
+	int32 value = 2;
+	int32 regen = 3;
+}
+
+enum character_state {
+	NONE = 0;
+	WALKING = 1;
+	COMBAT = 2;
+}
+	
+message character {
+	
+
+	string name = 1;
+	int64 id = 2;
+	int64 tile_id = 3;
+	direction facing = 4;
+	repeated attribute attributes = 5;
+	character_state state = 6;
+}
+
+message enemy {
+	string name = 1;
+	int64 id = 2;
+	int64 tile_id = 3;
+	direction facing = 4;
+	repeated attribute attributes = 5;
+	character_state state = 6;
+}
+
+message character_book {
+	repeated character characters = 1;
+}
+
+message enemy_book {
+	repeated enemy enemies = 1;
+}
+
+enum tile_type {
+	EMPTY = 0;
+	WALL = 1;
+	TREE = 2;
+	PORTAL = 3;
+}
+
+message neighbour {
+	direction neighbour_direction = 1;
+	int64 neighbour_tile_id = 2;
+}
+
+enum resident_type {
+	NOBODY = 0;
+	CHARACTER = 1;
+	ENEMY = 2;
+}
+
+message tile {
+	int64 id = 1;
+	tile_type type = 2;
+	repeated neighbour neighbours = 3;
+	resident_type occupant_type = 4;
+	int64 occupant_id = 5;
+	string mood = 6;
+}
+
+message tile_book {
+	repeated tile tiles = 1;
+}
+
+
