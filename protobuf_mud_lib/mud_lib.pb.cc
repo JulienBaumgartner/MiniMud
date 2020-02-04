@@ -15,9 +15,11 @@
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 extern PROTOBUF_INTERNAL_EXPORT_mud_5flib_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_attribute_mud_5flib_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_mud_5flib_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_character_mud_5flib_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_mud_5flib_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_enemy_mud_5flib_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_mud_5flib_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_neighbour_mud_5flib_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_mud_5flib_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_character_mud_5flib_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_mud_5flib_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_character_state_mud_5flib_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_mud_5flib_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_direction_mud_5flib_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_mud_5flib_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_enemy_mud_5flib_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_mud_5flib_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_neighbour_mud_5flib_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_mud_5flib_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_player_mud_5flib_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_mud_5flib_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_tile_mud_5flib_2eproto;
 namespace mud {
@@ -29,10 +31,18 @@ class playerBookDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<playerBook> _instance;
 } _playerBook_default_instance_;
+class directionDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<direction> _instance;
+} _direction_default_instance_;
 class attributeDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<attribute> _instance;
 } _attribute_default_instance_;
+class character_stateDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<character_state> _instance;
+} _character_state_default_instance_;
 class characterDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<character> _instance;
@@ -87,9 +97,11 @@ static void InitDefaultsscc_info_character_mud_5flib_2eproto() {
   ::mud::character::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_character_mud_5flib_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_character_mud_5flib_2eproto}, {
-      &scc_info_attribute_mud_5flib_2eproto.base,}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_character_mud_5flib_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 3, 0, InitDefaultsscc_info_character_mud_5flib_2eproto}, {
+      &scc_info_direction_mud_5flib_2eproto.base,
+      &scc_info_attribute_mud_5flib_2eproto.base,
+      &scc_info_character_state_mud_5flib_2eproto.base,}};
 
 static void InitDefaultsscc_info_character_book_mud_5flib_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -106,6 +118,34 @@ static void InitDefaultsscc_info_character_book_mud_5flib_2eproto() {
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_character_book_mud_5flib_2eproto}, {
       &scc_info_character_mud_5flib_2eproto.base,}};
 
+static void InitDefaultsscc_info_character_state_mud_5flib_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::mud::_character_state_default_instance_;
+    new (ptr) ::mud::character_state();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::mud::character_state::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_character_state_mud_5flib_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_character_state_mud_5flib_2eproto}, {}};
+
+static void InitDefaultsscc_info_direction_mud_5flib_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::mud::_direction_default_instance_;
+    new (ptr) ::mud::direction();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::mud::direction::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_direction_mud_5flib_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_direction_mud_5flib_2eproto}, {}};
+
 static void InitDefaultsscc_info_enemy_mud_5flib_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -117,9 +157,11 @@ static void InitDefaultsscc_info_enemy_mud_5flib_2eproto() {
   ::mud::enemy::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_enemy_mud_5flib_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_enemy_mud_5flib_2eproto}, {
-      &scc_info_attribute_mud_5flib_2eproto.base,}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_enemy_mud_5flib_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 3, 0, InitDefaultsscc_info_enemy_mud_5flib_2eproto}, {
+      &scc_info_direction_mud_5flib_2eproto.base,
+      &scc_info_attribute_mud_5flib_2eproto.base,
+      &scc_info_character_state_mud_5flib_2eproto.base,}};
 
 static void InitDefaultsscc_info_enemy_book_mud_5flib_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -147,8 +189,9 @@ static void InitDefaultsscc_info_neighbour_mud_5flib_2eproto() {
   ::mud::neighbour::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_neighbour_mud_5flib_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_neighbour_mud_5flib_2eproto}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_neighbour_mud_5flib_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_neighbour_mud_5flib_2eproto}, {
+      &scc_info_direction_mud_5flib_2eproto.base,}};
 
 static void InitDefaultsscc_info_player_mud_5flib_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -209,7 +252,7 @@ static void InitDefaultsscc_info_tile_book_mud_5flib_2eproto() {
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_tile_book_mud_5flib_2eproto}, {
       &scc_info_tile_mud_5flib_2eproto.base,}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_mud_5flib_2eproto[10];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_mud_5flib_2eproto[12];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_mud_5flib_2eproto[5];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_mud_5flib_2eproto = nullptr;
 
@@ -230,6 +273,12 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_mud_5flib_2eproto::offsets[] P
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::mud::playerBook, players_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::mud::direction, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::mud::direction, value_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::mud::attribute, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -237,6 +286,12 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_mud_5flib_2eproto::offsets[] P
   PROTOBUF_FIELD_OFFSET(::mud::attribute, name_),
   PROTOBUF_FIELD_OFFSET(::mud::attribute, value_),
   PROTOBUF_FIELD_OFFSET(::mud::attribute, regen_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::mud::character_state, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::mud::character_state, value_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::mud::character, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -299,20 +354,24 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_mud_5flib_2eproto::offsets[] P
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::mud::player)},
   { 9, -1, sizeof(::mud::playerBook)},
-  { 15, -1, sizeof(::mud::attribute)},
-  { 23, -1, sizeof(::mud::character)},
-  { 34, -1, sizeof(::mud::enemy)},
-  { 45, -1, sizeof(::mud::character_book)},
-  { 51, -1, sizeof(::mud::enemy_book)},
-  { 57, -1, sizeof(::mud::neighbour)},
-  { 64, -1, sizeof(::mud::tile)},
-  { 75, -1, sizeof(::mud::tile_book)},
+  { 15, -1, sizeof(::mud::direction)},
+  { 21, -1, sizeof(::mud::attribute)},
+  { 29, -1, sizeof(::mud::character_state)},
+  { 35, -1, sizeof(::mud::character)},
+  { 46, -1, sizeof(::mud::enemy)},
+  { 57, -1, sizeof(::mud::character_book)},
+  { 63, -1, sizeof(::mud::enemy_book)},
+  { 69, -1, sizeof(::mud::neighbour)},
+  { 76, -1, sizeof(::mud::tile)},
+  { 87, -1, sizeof(::mud::tile_book)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::mud::_player_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::mud::_playerBook_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::mud::_direction_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::mud::_attribute_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::mud::_character_state_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::mud::_character_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::mud::_enemy_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::mud::_character_book_default_instance_),
@@ -326,41 +385,47 @@ const char descriptor_table_protodef_mud_5flib_2eproto[] PROTOBUF_SECTION_VARIAB
   "\n\rmud_lib.proto\022\003mud\"N\n\006player\022\014\n\004name\030\001"
   " \001(\t\022\024\n\014passwordHash\030\002 \001(\t\022\n\n\002id\030\003 \001(\003\022\024"
   "\n\014idCharacters\030\004 \003(\003\"*\n\nplayerBook\022\034\n\007pl"
-  "ayers\030\001 \003(\0132\013.mud.player\"\237\001\n\tattribute\022+"
-  "\n\004name\030\001 \001(\0162\035.mud.attribute.attribute_n"
-  "ame\022\r\n\005value\030\002 \001(\005\022\r\n\005regen\030\003 \001(\005\"G\n\016att"
-  "ribute_name\022\010\n\004LIFE\020\000\022\014\n\010STRENGTH\020\001\022\013\n\007A"
-  "GILITY\020\002\022\020\n\014INTELLIGENCE\020\003\"\237\001\n\tcharacter"
-  "\022\014\n\004name\030\001 \001(\t\022\n\n\002id\030\002 \001(\003\022\017\n\007tile_id\030\003 "
-  "\001(\003\022\036\n\006facing\030\004 \001(\0162\016.mud.direction\022\"\n\na"
-  "ttributes\030\005 \003(\0132\016.mud.attribute\022#\n\005state"
-  "\030\006 \001(\0162\024.mud.character_state\"\233\001\n\005enemy\022\014"
-  "\n\004name\030\001 \001(\t\022\n\n\002id\030\002 \001(\003\022\017\n\007tile_id\030\003 \001("
-  "\003\022\036\n\006facing\030\004 \001(\0162\016.mud.direction\022\"\n\natt"
-  "ributes\030\005 \003(\0132\016.mud.attribute\022#\n\005state\030\006"
-  " \001(\0162\024.mud.character_state\"4\n\016character_"
-  "book\022\"\n\ncharacters\030\001 \003(\0132\016.mud.character"
-  "\")\n\nenemy_book\022\033\n\007enemies\030\001 \003(\0132\n.mud.en"
-  "emy\"S\n\tneighbour\022+\n\023neighbour_direction\030"
-  "\001 \001(\0162\016.mud.direction\022\031\n\021neighbour_tile_"
-  "id\030\002 \001(\003\"\242\001\n\004tile\022\n\n\002id\030\001 \001(\003\022\034\n\004type\030\002 "
-  "\001(\0162\016.mud.tile_type\022\"\n\nneighbours\030\003 \003(\0132"
-  "\016.mud.neighbour\022)\n\roccupant_type\030\004 \001(\0162\022"
-  ".mud.resident_type\022\023\n\013occupant_id\030\005 \001(\003\022"
-  "\014\n\004mood\030\006 \001(\t\"%\n\ttile_book\022\030\n\005tiles\030\001 \003("
-  "\0132\t.mud.tile*5\n\tdirection\022\t\n\005NORTH\020\000\022\t\n\005"
-  "SOUTH\020\001\022\010\n\004EAST\020\002\022\010\n\004WEST\020\003*4\n\017character"
-  "_state\022\010\n\004NONE\020\000\022\013\n\007WALKING\020\001\022\n\n\006COMBAT\020"
-  "\002*6\n\ttile_type\022\t\n\005EMPTY\020\000\022\010\n\004WALL\020\001\022\010\n\004T"
-  "REE\020\002\022\n\n\006PORTAL\020\003*5\n\rresident_type\022\n\n\006NO"
-  "BODY\020\000\022\r\n\tCHARACTER\020\001\022\t\n\005ENEMY\020\002b\006proto3"
+  "ayers\030\001 \003(\0132\013.mud.player\"u\n\tdirection\022,\n"
+  "\005value\030\001 \001(\0162\035.mud.direction.direction_e"
+  "num\":\n\016direction_enum\022\t\n\005NORTH\020\000\022\t\n\005SOUT"
+  "H\020\001\022\010\n\004EAST\020\002\022\010\n\004WEST\020\003\"\237\001\n\tattribute\022+\n"
+  "\004name\030\001 \001(\0162\035.mud.attribute.attribute_na"
+  "me\022\r\n\005value\030\002 \001(\005\022\r\n\005regen\030\003 \001(\005\"G\n\016attr"
+  "ibute_name\022\010\n\004LIFE\020\000\022\014\n\010STRENGTH\020\001\022\013\n\007AG"
+  "ILITY\020\002\022\020\n\014INTELLIGENCE\020\003\"\206\001\n\017character_"
+  "state\0228\n\005value\030\001 \001(\0162).mud.character_sta"
+  "te.character_state_enum\"9\n\024character_sta"
+  "te_enum\022\010\n\004NONE\020\000\022\013\n\007WALKING\020\001\022\n\n\006COMBAT"
+  "\020\002\"\237\001\n\tcharacter\022\014\n\004name\030\001 \001(\t\022\n\n\002id\030\002 \001"
+  "(\003\022\017\n\007tile_id\030\003 \001(\003\022\036\n\006facing\030\004 \001(\0132\016.mu"
+  "d.direction\022\"\n\nattributes\030\005 \003(\0132\016.mud.at"
+  "tribute\022#\n\005state\030\006 \001(\0132\024.mud.character_s"
+  "tate\"\233\001\n\005enemy\022\014\n\004name\030\001 \001(\t\022\n\n\002id\030\002 \001(\003"
+  "\022\017\n\007tile_id\030\003 \001(\003\022\036\n\006facing\030\004 \001(\0132\016.mud."
+  "direction\022\"\n\nattributes\030\005 \003(\0132\016.mud.attr"
+  "ibute\022#\n\005state\030\006 \001(\0132\024.mud.character_sta"
+  "te\"4\n\016character_book\022\"\n\ncharacters\030\001 \003(\013"
+  "2\016.mud.character\")\n\nenemy_book\022\033\n\007enemie"
+  "s\030\001 \003(\0132\n.mud.enemy\"S\n\tneighbour\022+\n\023neig"
+  "hbour_direction\030\001 \001(\0132\016.mud.direction\022\031\n"
+  "\021neighbour_tile_id\030\002 \001(\003\"\233\002\n\004tile\022\n\n\002id\030"
+  "\001 \001(\003\022!\n\004type\030\002 \001(\0162\023.mud.tile.tile_type"
+  "\022\"\n\nneighbours\030\003 \003(\0132\016.mud.neighbour\022.\n\r"
+  "occupant_type\030\004 \001(\0162\027.mud.tile.resident_"
+  "type\022\023\n\013occupant_id\030\005 \001(\003\022\014\n\004mood\030\006 \001(\t\""
+  "6\n\ttile_type\022\t\n\005EMPTY\020\000\022\010\n\004WALL\020\001\022\010\n\004TRE"
+  "E\020\002\022\n\n\006PORTAL\020\003\"5\n\rresident_type\022\n\n\006NOBO"
+  "DY\020\000\022\r\n\tCHARACTER\020\001\022\t\n\005ENEMY\020\002\"%\n\ttile_b"
+  "ook\022\030\n\005tiles\030\001 \003(\0132\t.mud.tileb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_mud_5flib_2eproto_deps[1] = {
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_mud_5flib_2eproto_sccs[10] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_mud_5flib_2eproto_sccs[12] = {
   &scc_info_attribute_mud_5flib_2eproto.base,
   &scc_info_character_mud_5flib_2eproto.base,
   &scc_info_character_book_mud_5flib_2eproto.base,
+  &scc_info_character_state_mud_5flib_2eproto.base,
+  &scc_info_direction_mud_5flib_2eproto.base,
   &scc_info_enemy_mud_5flib_2eproto.base,
   &scc_info_enemy_book_mud_5flib_2eproto.base,
   &scc_info_neighbour_mud_5flib_2eproto.base,
@@ -372,18 +437,43 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_mud
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_mud_5flib_2eproto_once;
 static bool descriptor_table_mud_5flib_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_mud_5flib_2eproto = {
-  &descriptor_table_mud_5flib_2eproto_initialized, descriptor_table_protodef_mud_5flib_2eproto, "mud_lib.proto", 1240,
-  &descriptor_table_mud_5flib_2eproto_once, descriptor_table_mud_5flib_2eproto_sccs, descriptor_table_mud_5flib_2eproto_deps, 10, 0,
+  &descriptor_table_mud_5flib_2eproto_initialized, descriptor_table_protodef_mud_5flib_2eproto, "mud_lib.proto", 1397,
+  &descriptor_table_mud_5flib_2eproto_once, descriptor_table_mud_5flib_2eproto_sccs, descriptor_table_mud_5flib_2eproto_deps, 12, 0,
   schemas, file_default_instances, TableStruct_mud_5flib_2eproto::offsets,
-  file_level_metadata_mud_5flib_2eproto, 10, file_level_enum_descriptors_mud_5flib_2eproto, file_level_service_descriptors_mud_5flib_2eproto,
+  file_level_metadata_mud_5flib_2eproto, 12, file_level_enum_descriptors_mud_5flib_2eproto, file_level_service_descriptors_mud_5flib_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
 static bool dynamic_init_dummy_mud_5flib_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_mud_5flib_2eproto), true);
 namespace mud {
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* attribute_attribute_name_descriptor() {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* direction_direction_enum_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_mud_5flib_2eproto);
   return file_level_enum_descriptors_mud_5flib_2eproto[0];
+}
+bool direction_direction_enum_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+constexpr direction_direction_enum direction::NORTH;
+constexpr direction_direction_enum direction::SOUTH;
+constexpr direction_direction_enum direction::EAST;
+constexpr direction_direction_enum direction::WEST;
+constexpr direction_direction_enum direction::direction_enum_MIN;
+constexpr direction_direction_enum direction::direction_enum_MAX;
+constexpr int direction::direction_enum_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* attribute_attribute_name_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_mud_5flib_2eproto);
+  return file_level_enum_descriptors_mud_5flib_2eproto[1];
 }
 bool attribute_attribute_name_IsValid(int value) {
   switch (value) {
@@ -406,27 +496,11 @@ constexpr attribute_attribute_name attribute::attribute_name_MIN;
 constexpr attribute_attribute_name attribute::attribute_name_MAX;
 constexpr int attribute::attribute_name_ARRAYSIZE;
 #endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* direction_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_mud_5flib_2eproto);
-  return file_level_enum_descriptors_mud_5flib_2eproto[1];
-}
-bool direction_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-      return true;
-    default:
-      return false;
-  }
-}
-
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* character_state_descriptor() {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* character_state_character_state_enum_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_mud_5flib_2eproto);
   return file_level_enum_descriptors_mud_5flib_2eproto[2];
 }
-bool character_state_IsValid(int value) {
+bool character_state_character_state_enum_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
@@ -437,11 +511,19 @@ bool character_state_IsValid(int value) {
   }
 }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* tile_type_descriptor() {
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+constexpr character_state_character_state_enum character_state::NONE;
+constexpr character_state_character_state_enum character_state::WALKING;
+constexpr character_state_character_state_enum character_state::COMBAT;
+constexpr character_state_character_state_enum character_state::character_state_enum_MIN;
+constexpr character_state_character_state_enum character_state::character_state_enum_MAX;
+constexpr int character_state::character_state_enum_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* tile_tile_type_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_mud_5flib_2eproto);
   return file_level_enum_descriptors_mud_5flib_2eproto[3];
 }
-bool tile_type_IsValid(int value) {
+bool tile_tile_type_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
@@ -453,11 +535,20 @@ bool tile_type_IsValid(int value) {
   }
 }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* resident_type_descriptor() {
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+constexpr tile_tile_type tile::EMPTY;
+constexpr tile_tile_type tile::WALL;
+constexpr tile_tile_type tile::TREE;
+constexpr tile_tile_type tile::PORTAL;
+constexpr tile_tile_type tile::tile_type_MIN;
+constexpr tile_tile_type tile::tile_type_MAX;
+constexpr int tile::tile_type_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* tile_resident_type_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_mud_5flib_2eproto);
   return file_level_enum_descriptors_mud_5flib_2eproto[4];
 }
-bool resident_type_IsValid(int value) {
+bool tile_resident_type_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
@@ -468,6 +559,14 @@ bool resident_type_IsValid(int value) {
   }
 }
 
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+constexpr tile_resident_type tile::NOBODY;
+constexpr tile_resident_type tile::CHARACTER;
+constexpr tile_resident_type tile::ENEMY;
+constexpr tile_resident_type tile::resident_type_MIN;
+constexpr tile_resident_type tile::resident_type_MAX;
+constexpr int tile::resident_type_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
 
 // ===================================================================
 
@@ -965,6 +1064,193 @@ void playerBook::InternalSwap(playerBook* other) {
 
 // ===================================================================
 
+void direction::InitAsDefaultInstance() {
+}
+class direction::_Internal {
+ public:
+};
+
+direction::direction()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:mud.direction)
+}
+direction::direction(const direction& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  value_ = from.value_;
+  // @@protoc_insertion_point(copy_constructor:mud.direction)
+}
+
+void direction::SharedCtor() {
+  value_ = 0;
+}
+
+direction::~direction() {
+  // @@protoc_insertion_point(destructor:mud.direction)
+  SharedDtor();
+}
+
+void direction::SharedDtor() {
+}
+
+void direction::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const direction& direction::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_direction_mud_5flib_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void direction::Clear() {
+// @@protoc_insertion_point(message_clear_start:mud.direction)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  value_ = 0;
+  _internal_metadata_.Clear();
+}
+
+const char* direction::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .mud.direction.direction_enum value = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+          _internal_set_value(static_cast<::mud::direction_direction_enum>(val));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* direction::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:mud.direction)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .mud.direction.direction_enum value = 1;
+  if (this->value() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_value(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:mud.direction)
+  return target;
+}
+
+size_t direction::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mud.direction)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .mud.direction.direction_enum value = 1;
+  if (this->value() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_value());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void direction::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:mud.direction)
+  GOOGLE_DCHECK_NE(&from, this);
+  const direction* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<direction>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:mud.direction)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:mud.direction)
+    MergeFrom(*source);
+  }
+}
+
+void direction::MergeFrom(const direction& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:mud.direction)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.value() != 0) {
+    _internal_set_value(from._internal_value());
+  }
+}
+
+void direction::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:mud.direction)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void direction::CopyFrom(const direction& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mud.direction)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool direction::IsInitialized() const {
+  return true;
+}
+
+void direction::InternalSwap(direction* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(value_, other->value_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata direction::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
 void attribute::InitAsDefaultInstance() {
 }
 class attribute::_Internal {
@@ -1206,12 +1492,213 @@ void attribute::InternalSwap(attribute* other) {
 
 // ===================================================================
 
-void character::InitAsDefaultInstance() {
+void character_state::InitAsDefaultInstance() {
 }
-class character::_Internal {
+class character_state::_Internal {
  public:
 };
 
+character_state::character_state()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:mud.character_state)
+}
+character_state::character_state(const character_state& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  value_ = from.value_;
+  // @@protoc_insertion_point(copy_constructor:mud.character_state)
+}
+
+void character_state::SharedCtor() {
+  value_ = 0;
+}
+
+character_state::~character_state() {
+  // @@protoc_insertion_point(destructor:mud.character_state)
+  SharedDtor();
+}
+
+void character_state::SharedDtor() {
+}
+
+void character_state::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const character_state& character_state::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_character_state_mud_5flib_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void character_state::Clear() {
+// @@protoc_insertion_point(message_clear_start:mud.character_state)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  value_ = 0;
+  _internal_metadata_.Clear();
+}
+
+const char* character_state::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .mud.character_state.character_state_enum value = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+          _internal_set_value(static_cast<::mud::character_state_character_state_enum>(val));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* character_state::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:mud.character_state)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .mud.character_state.character_state_enum value = 1;
+  if (this->value() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_value(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:mud.character_state)
+  return target;
+}
+
+size_t character_state::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mud.character_state)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .mud.character_state.character_state_enum value = 1;
+  if (this->value() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_value());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void character_state::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:mud.character_state)
+  GOOGLE_DCHECK_NE(&from, this);
+  const character_state* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<character_state>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:mud.character_state)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:mud.character_state)
+    MergeFrom(*source);
+  }
+}
+
+void character_state::MergeFrom(const character_state& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:mud.character_state)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.value() != 0) {
+    _internal_set_value(from._internal_value());
+  }
+}
+
+void character_state::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:mud.character_state)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void character_state::CopyFrom(const character_state& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mud.character_state)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool character_state::IsInitialized() const {
+  return true;
+}
+
+void character_state::InternalSwap(character_state* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(value_, other->value_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata character_state::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void character::InitAsDefaultInstance() {
+  ::mud::_character_default_instance_._instance.get_mutable()->facing_ = const_cast< ::mud::direction*>(
+      ::mud::direction::internal_default_instance());
+  ::mud::_character_default_instance_._instance.get_mutable()->state_ = const_cast< ::mud::character_state*>(
+      ::mud::character_state::internal_default_instance());
+}
+class character::_Internal {
+ public:
+  static const ::mud::direction& facing(const character* msg);
+  static const ::mud::character_state& state(const character* msg);
+};
+
+const ::mud::direction&
+character::_Internal::facing(const character* msg) {
+  return *msg->facing_;
+}
+const ::mud::character_state&
+character::_Internal::state(const character* msg) {
+  return *msg->state_;
+}
 character::character()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
@@ -1226,18 +1713,28 @@ character::character(const character& from)
   if (!from._internal_name().empty()) {
     name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
   }
+  if (from._internal_has_facing()) {
+    facing_ = new ::mud::direction(*from.facing_);
+  } else {
+    facing_ = nullptr;
+  }
+  if (from._internal_has_state()) {
+    state_ = new ::mud::character_state(*from.state_);
+  } else {
+    state_ = nullptr;
+  }
   ::memcpy(&id_, &from.id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&state_) -
-    reinterpret_cast<char*>(&id_)) + sizeof(state_));
+    static_cast<size_t>(reinterpret_cast<char*>(&tile_id_) -
+    reinterpret_cast<char*>(&id_)) + sizeof(tile_id_));
   // @@protoc_insertion_point(copy_constructor:mud.character)
 }
 
 void character::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_character_mud_5flib_2eproto.base);
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::memset(&id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&state_) -
-      reinterpret_cast<char*>(&id_)) + sizeof(state_));
+  ::memset(&facing_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&tile_id_) -
+      reinterpret_cast<char*>(&facing_)) + sizeof(tile_id_));
 }
 
 character::~character() {
@@ -1247,6 +1744,8 @@ character::~character() {
 
 void character::SharedDtor() {
   name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete facing_;
+  if (this != internal_default_instance()) delete state_;
 }
 
 void character::SetCachedSize(int size) const {
@@ -1266,9 +1765,17 @@ void character::Clear() {
 
   attributes_.Clear();
   name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (GetArenaNoVirtual() == nullptr && facing_ != nullptr) {
+    delete facing_;
+  }
+  facing_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && state_ != nullptr) {
+    delete state_;
+  }
+  state_ = nullptr;
   ::memset(&id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&state_) -
-      reinterpret_cast<char*>(&id_)) + sizeof(state_));
+      reinterpret_cast<char*>(&tile_id_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(tile_id_));
   _internal_metadata_.Clear();
 }
 
@@ -1304,10 +1811,9 @@ const char* character::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
         continue;
       // .mud.direction facing = 4;
       case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr = ctx->ParseMessage(_internal_mutable_facing(), ptr);
           CHK_(ptr);
-          _internal_set_facing(static_cast<::mud::direction>(val));
         } else goto handle_unusual;
         continue;
       // repeated .mud.attribute attributes = 5;
@@ -1324,10 +1830,9 @@ const char* character::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
         continue;
       // .mud.character_state state = 6;
       case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          ptr = ctx->ParseMessage(_internal_mutable_state(), ptr);
           CHK_(ptr);
-          _internal_set_state(static_cast<::mud::character_state>(val));
         } else goto handle_unusual;
         continue;
       default: {
@@ -1379,10 +1884,11 @@ failure:
   }
 
   // .mud.direction facing = 4;
-  if (this->facing() != 0) {
+  if (this->has_facing()) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
-      4, this->_internal_facing(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        4, _Internal::facing(this), target, stream);
   }
 
   // repeated .mud.attribute attributes = 5;
@@ -1394,10 +1900,11 @@ failure:
   }
 
   // .mud.character_state state = 6;
-  if (this->state() != 0) {
+  if (this->has_state()) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
-      6, this->_internal_state(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        6, _Internal::state(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1430,6 +1937,20 @@ size_t character::ByteSizeLong() const {
         this->_internal_name());
   }
 
+  // .mud.direction facing = 4;
+  if (this->has_facing()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *facing_);
+  }
+
+  // .mud.character_state state = 6;
+  if (this->has_state()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *state_);
+  }
+
   // int64 id = 2;
   if (this->id() != 0) {
     total_size += 1 +
@@ -1442,18 +1963,6 @@ size_t character::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
         this->_internal_tile_id());
-  }
-
-  // .mud.direction facing = 4;
-  if (this->facing() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_facing());
-  }
-
-  // .mud.character_state state = 6;
-  if (this->state() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_state());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1492,17 +2001,17 @@ void character::MergeFrom(const character& from) {
 
     name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
   }
+  if (from.has_facing()) {
+    _internal_mutable_facing()->::mud::direction::MergeFrom(from._internal_facing());
+  }
+  if (from.has_state()) {
+    _internal_mutable_state()->::mud::character_state::MergeFrom(from._internal_state());
+  }
   if (from.id() != 0) {
     _internal_set_id(from._internal_id());
   }
   if (from.tile_id() != 0) {
     _internal_set_tile_id(from._internal_tile_id());
-  }
-  if (from.facing() != 0) {
-    _internal_set_facing(from._internal_facing());
-  }
-  if (from.state() != 0) {
-    _internal_set_state(from._internal_state());
   }
 }
 
@@ -1530,10 +2039,10 @@ void character::InternalSwap(character* other) {
   attributes_.InternalSwap(&other->attributes_);
   name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
-  swap(id_, other->id_);
-  swap(tile_id_, other->tile_id_);
   swap(facing_, other->facing_);
   swap(state_, other->state_);
+  swap(id_, other->id_);
+  swap(tile_id_, other->tile_id_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata character::GetMetadata() const {
@@ -1544,11 +2053,25 @@ void character::InternalSwap(character* other) {
 // ===================================================================
 
 void enemy::InitAsDefaultInstance() {
+  ::mud::_enemy_default_instance_._instance.get_mutable()->facing_ = const_cast< ::mud::direction*>(
+      ::mud::direction::internal_default_instance());
+  ::mud::_enemy_default_instance_._instance.get_mutable()->state_ = const_cast< ::mud::character_state*>(
+      ::mud::character_state::internal_default_instance());
 }
 class enemy::_Internal {
  public:
+  static const ::mud::direction& facing(const enemy* msg);
+  static const ::mud::character_state& state(const enemy* msg);
 };
 
+const ::mud::direction&
+enemy::_Internal::facing(const enemy* msg) {
+  return *msg->facing_;
+}
+const ::mud::character_state&
+enemy::_Internal::state(const enemy* msg) {
+  return *msg->state_;
+}
 enemy::enemy()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
@@ -1563,18 +2086,28 @@ enemy::enemy(const enemy& from)
   if (!from._internal_name().empty()) {
     name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
   }
+  if (from._internal_has_facing()) {
+    facing_ = new ::mud::direction(*from.facing_);
+  } else {
+    facing_ = nullptr;
+  }
+  if (from._internal_has_state()) {
+    state_ = new ::mud::character_state(*from.state_);
+  } else {
+    state_ = nullptr;
+  }
   ::memcpy(&id_, &from.id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&state_) -
-    reinterpret_cast<char*>(&id_)) + sizeof(state_));
+    static_cast<size_t>(reinterpret_cast<char*>(&tile_id_) -
+    reinterpret_cast<char*>(&id_)) + sizeof(tile_id_));
   // @@protoc_insertion_point(copy_constructor:mud.enemy)
 }
 
 void enemy::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_enemy_mud_5flib_2eproto.base);
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::memset(&id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&state_) -
-      reinterpret_cast<char*>(&id_)) + sizeof(state_));
+  ::memset(&facing_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&tile_id_) -
+      reinterpret_cast<char*>(&facing_)) + sizeof(tile_id_));
 }
 
 enemy::~enemy() {
@@ -1584,6 +2117,8 @@ enemy::~enemy() {
 
 void enemy::SharedDtor() {
   name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete facing_;
+  if (this != internal_default_instance()) delete state_;
 }
 
 void enemy::SetCachedSize(int size) const {
@@ -1603,9 +2138,17 @@ void enemy::Clear() {
 
   attributes_.Clear();
   name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (GetArenaNoVirtual() == nullptr && facing_ != nullptr) {
+    delete facing_;
+  }
+  facing_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && state_ != nullptr) {
+    delete state_;
+  }
+  state_ = nullptr;
   ::memset(&id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&state_) -
-      reinterpret_cast<char*>(&id_)) + sizeof(state_));
+      reinterpret_cast<char*>(&tile_id_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(tile_id_));
   _internal_metadata_.Clear();
 }
 
@@ -1641,10 +2184,9 @@ const char* enemy::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
         continue;
       // .mud.direction facing = 4;
       case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr = ctx->ParseMessage(_internal_mutable_facing(), ptr);
           CHK_(ptr);
-          _internal_set_facing(static_cast<::mud::direction>(val));
         } else goto handle_unusual;
         continue;
       // repeated .mud.attribute attributes = 5;
@@ -1661,10 +2203,9 @@ const char* enemy::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
         continue;
       // .mud.character_state state = 6;
       case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          ptr = ctx->ParseMessage(_internal_mutable_state(), ptr);
           CHK_(ptr);
-          _internal_set_state(static_cast<::mud::character_state>(val));
         } else goto handle_unusual;
         continue;
       default: {
@@ -1716,10 +2257,11 @@ failure:
   }
 
   // .mud.direction facing = 4;
-  if (this->facing() != 0) {
+  if (this->has_facing()) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
-      4, this->_internal_facing(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        4, _Internal::facing(this), target, stream);
   }
 
   // repeated .mud.attribute attributes = 5;
@@ -1731,10 +2273,11 @@ failure:
   }
 
   // .mud.character_state state = 6;
-  if (this->state() != 0) {
+  if (this->has_state()) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
-      6, this->_internal_state(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        6, _Internal::state(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1767,6 +2310,20 @@ size_t enemy::ByteSizeLong() const {
         this->_internal_name());
   }
 
+  // .mud.direction facing = 4;
+  if (this->has_facing()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *facing_);
+  }
+
+  // .mud.character_state state = 6;
+  if (this->has_state()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *state_);
+  }
+
   // int64 id = 2;
   if (this->id() != 0) {
     total_size += 1 +
@@ -1779,18 +2336,6 @@ size_t enemy::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
         this->_internal_tile_id());
-  }
-
-  // .mud.direction facing = 4;
-  if (this->facing() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_facing());
-  }
-
-  // .mud.character_state state = 6;
-  if (this->state() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_state());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1829,17 +2374,17 @@ void enemy::MergeFrom(const enemy& from) {
 
     name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
   }
+  if (from.has_facing()) {
+    _internal_mutable_facing()->::mud::direction::MergeFrom(from._internal_facing());
+  }
+  if (from.has_state()) {
+    _internal_mutable_state()->::mud::character_state::MergeFrom(from._internal_state());
+  }
   if (from.id() != 0) {
     _internal_set_id(from._internal_id());
   }
   if (from.tile_id() != 0) {
     _internal_set_tile_id(from._internal_tile_id());
-  }
-  if (from.facing() != 0) {
-    _internal_set_facing(from._internal_facing());
-  }
-  if (from.state() != 0) {
-    _internal_set_state(from._internal_state());
   }
 }
 
@@ -1867,10 +2412,10 @@ void enemy::InternalSwap(enemy* other) {
   attributes_.InternalSwap(&other->attributes_);
   name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
-  swap(id_, other->id_);
-  swap(tile_id_, other->tile_id_);
   swap(facing_, other->facing_);
   swap(state_, other->state_);
+  swap(id_, other->id_);
+  swap(tile_id_, other->tile_id_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata enemy::GetMetadata() const {
@@ -2263,11 +2808,18 @@ void enemy_book::InternalSwap(enemy_book* other) {
 // ===================================================================
 
 void neighbour::InitAsDefaultInstance() {
+  ::mud::_neighbour_default_instance_._instance.get_mutable()->neighbour_direction_ = const_cast< ::mud::direction*>(
+      ::mud::direction::internal_default_instance());
 }
 class neighbour::_Internal {
  public:
+  static const ::mud::direction& neighbour_direction(const neighbour* msg);
 };
 
+const ::mud::direction&
+neighbour::_Internal::neighbour_direction(const neighbour* msg) {
+  return *msg->neighbour_direction_;
+}
 neighbour::neighbour()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
@@ -2277,16 +2829,20 @@ neighbour::neighbour(const neighbour& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::memcpy(&neighbour_tile_id_, &from.neighbour_tile_id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&neighbour_direction_) -
-    reinterpret_cast<char*>(&neighbour_tile_id_)) + sizeof(neighbour_direction_));
+  if (from._internal_has_neighbour_direction()) {
+    neighbour_direction_ = new ::mud::direction(*from.neighbour_direction_);
+  } else {
+    neighbour_direction_ = nullptr;
+  }
+  neighbour_tile_id_ = from.neighbour_tile_id_;
   // @@protoc_insertion_point(copy_constructor:mud.neighbour)
 }
 
 void neighbour::SharedCtor() {
-  ::memset(&neighbour_tile_id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&neighbour_direction_) -
-      reinterpret_cast<char*>(&neighbour_tile_id_)) + sizeof(neighbour_direction_));
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_neighbour_mud_5flib_2eproto.base);
+  ::memset(&neighbour_direction_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&neighbour_tile_id_) -
+      reinterpret_cast<char*>(&neighbour_direction_)) + sizeof(neighbour_tile_id_));
 }
 
 neighbour::~neighbour() {
@@ -2295,6 +2851,7 @@ neighbour::~neighbour() {
 }
 
 void neighbour::SharedDtor() {
+  if (this != internal_default_instance()) delete neighbour_direction_;
 }
 
 void neighbour::SetCachedSize(int size) const {
@@ -2312,9 +2869,11 @@ void neighbour::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&neighbour_tile_id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&neighbour_direction_) -
-      reinterpret_cast<char*>(&neighbour_tile_id_)) + sizeof(neighbour_direction_));
+  if (GetArenaNoVirtual() == nullptr && neighbour_direction_ != nullptr) {
+    delete neighbour_direction_;
+  }
+  neighbour_direction_ = nullptr;
+  neighbour_tile_id_ = PROTOBUF_LONGLONG(0);
   _internal_metadata_.Clear();
 }
 
@@ -2327,10 +2886,9 @@ const char* neighbour::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
     switch (tag >> 3) {
       // .mud.direction neighbour_direction = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_neighbour_direction(), ptr);
           CHK_(ptr);
-          _internal_set_neighbour_direction(static_cast<::mud::direction>(val));
         } else goto handle_unusual;
         continue;
       // int64 neighbour_tile_id = 2;
@@ -2367,10 +2925,11 @@ failure:
   (void) cached_has_bits;
 
   // .mud.direction neighbour_direction = 1;
-  if (this->neighbour_direction() != 0) {
+  if (this->has_neighbour_direction()) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
-      1, this->_internal_neighbour_direction(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::neighbour_direction(this), target, stream);
   }
 
   // int64 neighbour_tile_id = 2;
@@ -2395,17 +2954,18 @@ size_t neighbour::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  // .mud.direction neighbour_direction = 1;
+  if (this->has_neighbour_direction()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *neighbour_direction_);
+  }
+
   // int64 neighbour_tile_id = 2;
   if (this->neighbour_tile_id() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
         this->_internal_neighbour_tile_id());
-  }
-
-  // .mud.direction neighbour_direction = 1;
-  if (this->neighbour_direction() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_neighbour_direction());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2439,11 +2999,11 @@ void neighbour::MergeFrom(const neighbour& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.has_neighbour_direction()) {
+    _internal_mutable_neighbour_direction()->::mud::direction::MergeFrom(from._internal_neighbour_direction());
+  }
   if (from.neighbour_tile_id() != 0) {
     _internal_set_neighbour_tile_id(from._internal_neighbour_tile_id());
-  }
-  if (from.neighbour_direction() != 0) {
-    _internal_set_neighbour_direction(from._internal_neighbour_direction());
   }
 }
 
@@ -2468,8 +3028,8 @@ bool neighbour::IsInitialized() const {
 void neighbour::InternalSwap(neighbour* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(neighbour_tile_id_, other->neighbour_tile_id_);
   swap(neighbour_direction_, other->neighbour_direction_);
+  swap(neighbour_tile_id_, other->neighbour_tile_id_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata neighbour::GetMetadata() const {
@@ -2559,12 +3119,12 @@ const char* tile::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inter
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .mud.tile_type type = 2;
+      // .mud.tile.tile_type type = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
-          _internal_set_type(static_cast<::mud::tile_type>(val));
+          _internal_set_type(static_cast<::mud::tile_tile_type>(val));
         } else goto handle_unusual;
         continue;
       // repeated .mud.neighbour neighbours = 3;
@@ -2579,12 +3139,12 @@ const char* tile::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inter
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
         } else goto handle_unusual;
         continue;
-      // .mud.resident_type occupant_type = 4;
+      // .mud.tile.resident_type occupant_type = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
-          _internal_set_occupant_type(static_cast<::mud::resident_type>(val));
+          _internal_set_occupant_type(static_cast<::mud::tile_resident_type>(val));
         } else goto handle_unusual;
         continue;
       // int64 occupant_id = 5;
@@ -2635,7 +3195,7 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(1, this->_internal_id(), target);
   }
 
-  // .mud.tile_type type = 2;
+  // .mud.tile.tile_type type = 2;
   if (this->type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
@@ -2650,7 +3210,7 @@ failure:
       InternalWriteMessage(3, this->_internal_neighbours(i), target, stream);
   }
 
-  // .mud.resident_type occupant_type = 4;
+  // .mud.tile.resident_type occupant_type = 4;
   if (this->occupant_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
@@ -2710,13 +3270,13 @@ size_t tile::ByteSizeLong() const {
         this->_internal_id());
   }
 
-  // .mud.tile_type type = 2;
+  // .mud.tile.tile_type type = 2;
   if (this->type() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_type());
   }
 
-  // .mud.resident_type occupant_type = 4;
+  // .mud.tile.resident_type occupant_type = 4;
   if (this->occupant_type() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_occupant_type());
@@ -3014,8 +3574,14 @@ template<> PROTOBUF_NOINLINE ::mud::player* Arena::CreateMaybeMessage< ::mud::pl
 template<> PROTOBUF_NOINLINE ::mud::playerBook* Arena::CreateMaybeMessage< ::mud::playerBook >(Arena* arena) {
   return Arena::CreateInternal< ::mud::playerBook >(arena);
 }
+template<> PROTOBUF_NOINLINE ::mud::direction* Arena::CreateMaybeMessage< ::mud::direction >(Arena* arena) {
+  return Arena::CreateInternal< ::mud::direction >(arena);
+}
 template<> PROTOBUF_NOINLINE ::mud::attribute* Arena::CreateMaybeMessage< ::mud::attribute >(Arena* arena) {
   return Arena::CreateInternal< ::mud::attribute >(arena);
+}
+template<> PROTOBUF_NOINLINE ::mud::character_state* Arena::CreateMaybeMessage< ::mud::character_state >(Arena* arena) {
+  return Arena::CreateInternal< ::mud::character_state >(arena);
 }
 template<> PROTOBUF_NOINLINE ::mud::character* Arena::CreateMaybeMessage< ::mud::character >(Arena* arena) {
   return Arena::CreateInternal< ::mud::character >(arena);

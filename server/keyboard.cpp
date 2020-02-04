@@ -1,43 +1,98 @@
 #include "keyboard.h"
-Keyboard::Input Keyboard::GetInput()
+
+	void Keyboard::run()
+	{
+		if (running_) return;
+		running_ = true;
+		backgroud_thread_ = std::thread([this]
+		{
+			bool local_running = true;
+			do {
+				for (int i = 0; i < 256; ++i) {
+					new_key_states_[i] = GetAsyncKeyState(i);
+					key_state_inputs_[i].pressed_ = false;
+					key_state_inputs_[i].released_ = false;
+					if (new_key_states_[i] != old_key_states_[i])
+					{
+						if (new_key_states_[i] & 0x8000)
+						{
+							key_state_inputs_[i].pressed_ =
+								key_state_inputs_[i].held_;
+							key_state_inputs_[i].held_ = true;
+						}
+						else
+						{
+							key_state_inputs_[i].released_ = true;
+							key_state_inputs_[i].held_ = false;
+						}
+					}
+					old_key_states_[i] = new_key_states_[i];
+				}
+				{
+					std::lock_guard l(mutex_);
+					local_running = running_;
+					for (const auto& key : input_key) {
+						if (key_state_inputs_[key.second].released_)
+						{
+							key_released_[key.first] = true;
+						}
+					}
+				}
+			} while (local_running);
+		});
+	}
+
+	bool Keyboard::check_released_input(const input_t& key)
+	{
+		std::lock_guard l(mutex_);
+		if (key_released_[key]) {
+			std::cout << key << std::endl;
+			key_released_[key] = false;
+			return true;
+		}
+		return false;
+	}
+
+	void Keyboard::stop() {
+		{
+			std::lock_guard l(mutex_);
+			running_ = false;
+		}
+		backgroud_thread_.join();
+	}
+
+
+std::ostream& operator<< (std::ostream& os, const input_t& key)
 {
-	Keyboard::Input input;
-
-	if (GetAsyncKeyState(VK_UP) < 0) 
+	switch (key)
 	{
-		std::cout << "UP" << std::endl;
-		return Keyboard::Forward;
+	case input_t::ATTACK:
+		os << "ATTACK";
+		break;
+	case input_t::BACKWARD:
+		os << "BACKWARD";
+		break;
+	case input_t::FORWARD:
+		os << "FORWARD";
+		break;
+	case input_t::INFO:
+		os << "INFO";
+		break;
+	case input_t::LEFT:
+		os << "LEFT";
+		break;
+	case input_t::NONE:
+		os << "NONE";
+		break;
+	case input_t::PRINT:
+		os << "PRINT";
+		break;
+	case input_t::QUIT:
+		os << "QUIT";
+		break;
+	case input_t::RIGHT:
+		os << "RIGHT";
+		break;
 	}
-	if (GetAsyncKeyState(VK_DOWN) < 0)
-	{
-		std::cout << "DOWN" << std::endl;
-		return Keyboard::Backward;
-	}
-	if (GetAsyncKeyState(VK_RIGHT) < 0)
-	{
-		std::cout << "RIGHT" << std::endl;
-		return Keyboard::TurnRight;
-	}
-	if (GetAsyncKeyState(VK_LEFT) < 0)
-	{
-		std::cout << "LEFT" << std::endl;
-		return Keyboard::TurnLeft;
-	}
-	if (GetAsyncKeyState(VK_RETURN) < 0)
-	{
-		std::cout << "ENTER" << std::endl;
-		return Keyboard::Attack;
-	}
-	if (GetAsyncKeyState(VK_ESCAPE) < 0)
-	{
-		std::cout << "ESC" << std::endl;
-		return Keyboard::Quit;
-	}
-	if (GetAsyncKeyState(VK_TAB) < 0)
-	{
-		std::cout << "TAB" << std::endl;
-		return Keyboard::Info;
-	}
-
-	return Keyboard::None;
+	return os;
 }

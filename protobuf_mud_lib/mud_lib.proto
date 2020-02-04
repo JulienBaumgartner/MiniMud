@@ -13,11 +13,14 @@ message playerBook {
 	repeated player players = 1;
 }
 
-enum direction {
-	NORTH = 0;
-	SOUTH = 1;
-	EAST = 2;
-	WEST = 3;
+message direction {
+	enum direction_enum {
+		NORTH = 0;
+		SOUTH = 1;
+		EAST = 2;
+		WEST = 3;
+	}
+	direction_enum value = 1;
 }
 
 message attribute {
@@ -33,15 +36,16 @@ message attribute {
 	int32 regen = 3;
 }
 
-enum character_state {
-	NONE = 0;
-	WALKING = 1;
-	COMBAT = 2;
+message character_state {
+	enum character_state_enum{
+		NONE = 0;
+		WALKING = 1;
+		COMBAT = 2;
+	}
+	character_state_enum value = 1;
 }
 	
 message character {
-	
-
 	string name = 1;
 	int64 id = 2;
 	int64 tile_id = 3;
@@ -67,25 +71,29 @@ message enemy_book {
 	repeated enemy enemies = 1;
 }
 
-enum tile_type {
-	EMPTY = 0;
-	WALL = 1;
-	TREE = 2;
-	PORTAL = 3;
-}
+
 
 message neighbour {
 	direction neighbour_direction = 1;
 	int64 neighbour_tile_id = 2;
 }
 
-enum resident_type {
-	NOBODY = 0;
-	CHARACTER = 1;
-	ENEMY = 2;
-}
+
 
 message tile {
+	enum tile_type {
+		EMPTY = 0;
+		WALL = 1;
+		TREE = 2;
+		PORTAL = 3;
+	}
+
+	enum resident_type {
+		NOBODY = 0;
+		CHARACTER = 1;
+		ENEMY = 2;
+	}
+	
 	int64 id = 1;
 	tile_type type = 2;
 	repeated neighbour neighbours = 3;

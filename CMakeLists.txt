@@ -23,8 +23,6 @@ target_link_libraries(protobuf_mud_lib
 add_executable(server
 	${CMAKE_CURRENT_SOURCE_DIR}/server/main.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/server/helper.h
-	${CMAKE_CURRENT_SOURCE_DIR}/server/character.h
-	${CMAKE_CURRENT_SOURCE_DIR}/server/character.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/server/game.h
 	${CMAKE_CURRENT_SOURCE_DIR}/server/game.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/server/keyboard.h
