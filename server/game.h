@@ -2,13 +2,19 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "helper.h"
-#include "keyboard.h"
+#include "../mud_lib/helper.h"
+#include "../mud_lib/keyboard.h"
 
 class Game 
 {
 public:
+	Game();
 	void run();
+	mud::player GetPlayer(std::string name);
+	mud::character CreateCharacter(std::string name, std::int64_t playerId);
+
+	std::map<std::int64_t, mud::character> characters;
+	std::map<std::int64_t, mud::player> players;
 protected:
 	input_t execute_keyboard();
 	void initMap();
@@ -34,14 +40,12 @@ protected:
 	mud::tile_book getTileBook();
 	mud::enemy_book getEnemyBook();
 	mud::character_book getCharacterBook();
+	mud::player_book getPlayerBook();
 
 	std::int64_t characterId;
 	Keyboard keyboard;
 
 	std::map<std::int64_t, mud::tile> tiles;
 	std::map<std::int64_t, mud::enemy> enemies;
-	std::map<std::int64_t, mud::character> characters;
-
-
 };
 

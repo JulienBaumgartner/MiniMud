@@ -1,10 +1,12 @@
+
 #include <iostream>
 #include <fstream>
-#include <string>
 #include "game.h"
-#include "helper.h"
+#include "session.h"
+#include <grpcpp/server_builder.h>
+#include <grpcpp/security/credentials.h>
 
-bool registerPlayer(mud::playerBook &book)
+bool registerPlayer(mud::player_book &book)
 {
 	int maxId = 0;
 	for (const auto& player : book.players())
@@ -54,7 +56,7 @@ bool registerPlayer(mud::playerBook &book)
 
 void showPlayers()
 {
-	mud::playerBook book{};
+	mud::player_book book{};
 
 	std::ifstream ifs(
 		"player.data",
@@ -78,8 +80,18 @@ void showPlayers()
 int main(int ac, char** av) {
 	std::cout << "starting server!" << std::endl;
 
-	Game game;
-	game.run();
+	auto pg = std::make_shared<Game>();
+	Session session{ pg };
+	std::string server_address{ "0.0.0.0:4242" };
+	grpc::ServerBuilder builder{};
+
+	builder.AddListeningPort(
+		server_address,
+		grpc::InsecureServerCredentials());
+
+	builder.RegisterService(&session);
+	std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
+	server->Wait();
 
 	return 0;
 }

@@ -1,6 +1,6 @@
 #include "game.h"
 
-void Game::run()
+Game::Game()
 {
 	loadData();
 
@@ -9,41 +9,10 @@ void Game::run()
 		initMap();
 		saveBook("tiles.json", getTileBook());
 	}
+}
 
-	/*if (enemies.size() == 0)
-	{
-		mud::enemy enemy;
-		enemy.set_name("slime A");
-		enemy.set_id(1);
-		enemy.set_tile_id(8);
-		*enemy.mutable_facing() = dirSouth;
-
-		mud::attribute life;
-		life.set_name(mud::attribute_attribute_name_LIFE);
-		life.set_value(20);
-		life.set_regen(2);
-		*enemy.add_attributes() = life;
-
-		mud::attribute strenght;
-		strenght.set_name(mud::attribute_attribute_name_STRENGTH);
-		strenght.set_value(10);
-		*enemy.add_attributes() = strenght;
-
-		enemies.insert({ enemy.id(), enemy });
-
-		mud::enemy enemy2;
-		enemy2.set_name("slime B");
-		enemy2.set_id(2);
-		enemy2.set_tile_id(9);
-		*enemy2.mutable_facing() = dirSouth;
-		*enemy2.add_attributes() = life;
-		*enemy2.add_attributes() = strenght;
-
-		enemies.insert({ enemy2.id(), enemy2 });
-
-		saveBook("enemies.json", getEnemyBook());
-	}*/
-
+void Game::run()
+{
 	for (auto& field : tiles)
 	{
 		std::cout << field.second << std::endl;
@@ -74,6 +43,7 @@ void Game::run()
 			}
 		}
 	}
+
 	keyboard.run();
 	bool loop = true;
 	while(loop)
@@ -101,6 +71,71 @@ void Game::run()
 		Sleep(1000);
 	}
 	keyboard.stop();
+}
+
+mud::player Game::GetPlayer(std::string name)
+{
+	for (const auto& field : players)
+	{
+		if (field.second.name() == name)
+		{
+			return field.second;
+		}
+	}
+	return mud::player();
+}
+
+mud::character Game::CreateCharacter(std::string name, std::int64_t playerId)
+{
+	int maxId = 0;
+	for (const auto& field : characters)
+	{
+		if (field.first > maxId) {
+			maxId = field.first;
+		}
+	}
+
+	mud::character character{};
+	character.set_name(name);
+	
+	character.set_id(maxId + 1);
+	mud::direction direction{};
+	direction.set_value(mud::direction::SOUTH);
+	*character.mutable_facing() = direction;
+	mud::character_state state{};
+	state.set_value(mud::character_state::NONE);
+	*character.mutable_state() = state;
+	for (auto& field : tiles)
+	{
+		if (field.second.occupant_type() == mud::tile::NOBODY)
+		{
+			character.set_tile_id(field.first);
+			field.second.set_occupant_type(mud::tile::CHARACTER);
+			field.second.set_occupant_id(character.id());
+			break;
+		}
+	}
+
+	mud::attribute life;
+	life.set_name(mud::attribute::LIFE);
+	life.set_value(100);
+	life.set_regen(1);
+	*character.add_attributes() = life;
+
+	mud::attribute strenght;
+	strenght.set_name(mud::attribute::STRENGTH);
+	strenght.set_value(10);
+	*character.add_attributes() = strenght;
+
+
+	characterId = character.id();
+	characters.insert({ characterId, character });
+
+	mud::player& player = players[playerId];
+	player.add_idcharacters(character.id());
+
+	saveData();
+	return character;
 }
 
 input_t Game::execute_keyboard()
@@ -184,10 +219,12 @@ void Game::loadData()
 	mud::tile_book tilesBook{};
 	mud::enemy_book enemyBook{};
 	mud::character_book characterBook{};
+	mud::player_book playerBook{};
 
 	loadBook("tiles.json", tilesBook);
 	loadBook("enemies.json", enemyBook);
 	loadBook("characters.json", characterBook);
+	loadBook("players.json", playerBook);
 
 	for (const auto& t : tilesBook.tiles())
 	{
@@ -201,6 +238,10 @@ void Game::loadData()
 	{
 		characters.insert({ c.id(), c });
 	}
+	for (const auto& p : playerBook.players())
+	{
+		players.insert({ p.id(), p });
+	}
 }
 
 bool Game::saveData()
@@ -209,6 +250,7 @@ bool Game::saveData()
 	flag = saveBook("tiles.json", getTileBook()) && flag;
 	flag = saveBook("enemies.json", getEnemyBook()) && flag;
 	flag = saveBook("characters.json", getCharacterBook()) && flag;
+	flag = saveBook("players.json", getPlayerBook()) && flag;
 
 	return flag;
 }
@@ -570,6 +612,16 @@ mud::character_book Game::getCharacterBook()
 	for (auto& field : characters)
 	{
 		*book.add_characters() = field.second;
+	}
+	return book;
+}
+
+mud::player_book Game::getPlayerBook()
+{
+	mud::player_book book{};
+	for (auto& field : players)
+	{
+		*book.add_players() = field.second;
 	}
 	return book;
 }

@@ -9,7 +9,7 @@ message player {
 	repeated int64 idCharacters = 4;
 }
 
-message playerBook {
+message player_book {
 	repeated player players = 1;
 }
 
@@ -106,4 +106,50 @@ message tile_book {
 	repeated tile tiles = 1;
 }
 
+message token_in {}
 
+message token_out {
+	int64 token = 1;
+}
+
+message login_in {
+	string name = 1;
+	string hash = 2;
+	int64 token = 3;
+}
+
+message login_out {
+	enum login_state_enum{
+		OK = 0;
+		FAILED = 1;
+	}
+	repeated character characters = 1;
+	login_state_enum login_state = 2;
+}
+
+message select_character_in {
+	enum action_type{
+		SELECT = 0;
+		CREATE = 1;
+	}
+	string name = 1;
+	int64 token = 2;
+	action_type action = 3;
+}
+
+message select_character_out {
+	enum result_enum{
+		OK = 0;
+		NOT_FOUND = 1;
+		NAME_ALREADY_EXIST = 2;
+		ERROR = 3;
+	}
+	character selected_character = 1;
+	result_enum result = 2;
+}
+
+service game_server {
+	rpc GetToken(token_in) returns (token_out) {}
+	rpc Login(login_in) returns (login_out) {}
+	rpc SelectCharacter(select_character_in) returns (select_character_out) {}
+}

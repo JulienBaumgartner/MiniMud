@@ -48,7 +48,7 @@ struct TableStruct_mud_5flib_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[12]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[18]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -77,21 +77,39 @@ extern enemyDefaultTypeInternal _enemy_default_instance_;
 class enemy_book;
 class enemy_bookDefaultTypeInternal;
 extern enemy_bookDefaultTypeInternal _enemy_book_default_instance_;
+class login_in;
+class login_inDefaultTypeInternal;
+extern login_inDefaultTypeInternal _login_in_default_instance_;
+class login_out;
+class login_outDefaultTypeInternal;
+extern login_outDefaultTypeInternal _login_out_default_instance_;
 class neighbour;
 class neighbourDefaultTypeInternal;
 extern neighbourDefaultTypeInternal _neighbour_default_instance_;
 class player;
 class playerDefaultTypeInternal;
 extern playerDefaultTypeInternal _player_default_instance_;
-class playerBook;
-class playerBookDefaultTypeInternal;
-extern playerBookDefaultTypeInternal _playerBook_default_instance_;
+class player_book;
+class player_bookDefaultTypeInternal;
+extern player_bookDefaultTypeInternal _player_book_default_instance_;
+class select_character_in;
+class select_character_inDefaultTypeInternal;
+extern select_character_inDefaultTypeInternal _select_character_in_default_instance_;
+class select_character_out;
+class select_character_outDefaultTypeInternal;
+extern select_character_outDefaultTypeInternal _select_character_out_default_instance_;
 class tile;
 class tileDefaultTypeInternal;
 extern tileDefaultTypeInternal _tile_default_instance_;
 class tile_book;
 class tile_bookDefaultTypeInternal;
 extern tile_bookDefaultTypeInternal _tile_book_default_instance_;
+class token_in;
+class token_inDefaultTypeInternal;
+extern token_inDefaultTypeInternal _token_in_default_instance_;
+class token_out;
+class token_outDefaultTypeInternal;
+extern token_outDefaultTypeInternal _token_out_default_instance_;
 }  // namespace mud
 PROTOBUF_NAMESPACE_OPEN
 template<> ::mud::attribute* Arena::CreateMaybeMessage<::mud::attribute>(Arena*);
@@ -101,11 +119,17 @@ template<> ::mud::character_state* Arena::CreateMaybeMessage<::mud::character_st
 template<> ::mud::direction* Arena::CreateMaybeMessage<::mud::direction>(Arena*);
 template<> ::mud::enemy* Arena::CreateMaybeMessage<::mud::enemy>(Arena*);
 template<> ::mud::enemy_book* Arena::CreateMaybeMessage<::mud::enemy_book>(Arena*);
+template<> ::mud::login_in* Arena::CreateMaybeMessage<::mud::login_in>(Arena*);
+template<> ::mud::login_out* Arena::CreateMaybeMessage<::mud::login_out>(Arena*);
 template<> ::mud::neighbour* Arena::CreateMaybeMessage<::mud::neighbour>(Arena*);
 template<> ::mud::player* Arena::CreateMaybeMessage<::mud::player>(Arena*);
-template<> ::mud::playerBook* Arena::CreateMaybeMessage<::mud::playerBook>(Arena*);
+template<> ::mud::player_book* Arena::CreateMaybeMessage<::mud::player_book>(Arena*);
+template<> ::mud::select_character_in* Arena::CreateMaybeMessage<::mud::select_character_in>(Arena*);
+template<> ::mud::select_character_out* Arena::CreateMaybeMessage<::mud::select_character_out>(Arena*);
 template<> ::mud::tile* Arena::CreateMaybeMessage<::mud::tile>(Arena*);
 template<> ::mud::tile_book* Arena::CreateMaybeMessage<::mud::tile_book>(Arena*);
+template<> ::mud::token_in* Arena::CreateMaybeMessage<::mud::token_in>(Arena*);
+template<> ::mud::token_out* Arena::CreateMaybeMessage<::mud::token_out>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace mud {
 
@@ -241,6 +265,83 @@ inline bool tile_resident_type_Parse(
     const std::string& name, tile_resident_type* value) {
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<tile_resident_type>(
     tile_resident_type_descriptor(), name, value);
+}
+enum login_out_login_state_enum : int {
+  login_out_login_state_enum_OK = 0,
+  login_out_login_state_enum_FAILED = 1,
+  login_out_login_state_enum_login_out_login_state_enum_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  login_out_login_state_enum_login_out_login_state_enum_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool login_out_login_state_enum_IsValid(int value);
+constexpr login_out_login_state_enum login_out_login_state_enum_login_state_enum_MIN = login_out_login_state_enum_OK;
+constexpr login_out_login_state_enum login_out_login_state_enum_login_state_enum_MAX = login_out_login_state_enum_FAILED;
+constexpr int login_out_login_state_enum_login_state_enum_ARRAYSIZE = login_out_login_state_enum_login_state_enum_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* login_out_login_state_enum_descriptor();
+template<typename T>
+inline const std::string& login_out_login_state_enum_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, login_out_login_state_enum>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function login_out_login_state_enum_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    login_out_login_state_enum_descriptor(), enum_t_value);
+}
+inline bool login_out_login_state_enum_Parse(
+    const std::string& name, login_out_login_state_enum* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<login_out_login_state_enum>(
+    login_out_login_state_enum_descriptor(), name, value);
+}
+enum select_character_in_action_type : int {
+  select_character_in_action_type_SELECT = 0,
+  select_character_in_action_type_CREATE = 1,
+  select_character_in_action_type_select_character_in_action_type_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  select_character_in_action_type_select_character_in_action_type_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool select_character_in_action_type_IsValid(int value);
+constexpr select_character_in_action_type select_character_in_action_type_action_type_MIN = select_character_in_action_type_SELECT;
+constexpr select_character_in_action_type select_character_in_action_type_action_type_MAX = select_character_in_action_type_CREATE;
+constexpr int select_character_in_action_type_action_type_ARRAYSIZE = select_character_in_action_type_action_type_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* select_character_in_action_type_descriptor();
+template<typename T>
+inline const std::string& select_character_in_action_type_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, select_character_in_action_type>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function select_character_in_action_type_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    select_character_in_action_type_descriptor(), enum_t_value);
+}
+inline bool select_character_in_action_type_Parse(
+    const std::string& name, select_character_in_action_type* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<select_character_in_action_type>(
+    select_character_in_action_type_descriptor(), name, value);
+}
+enum select_character_out_result_enum : int {
+  select_character_out_result_enum_OK = 0,
+  select_character_out_result_enum_NOT_FOUND = 1,
+  select_character_out_result_enum_NAME_ALREADY_EXIST = 2,
+  select_character_out_result_enum_ERROR = 3,
+  select_character_out_result_enum_select_character_out_result_enum_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  select_character_out_result_enum_select_character_out_result_enum_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool select_character_out_result_enum_IsValid(int value);
+constexpr select_character_out_result_enum select_character_out_result_enum_result_enum_MIN = select_character_out_result_enum_OK;
+constexpr select_character_out_result_enum select_character_out_result_enum_result_enum_MAX = select_character_out_result_enum_ERROR;
+constexpr int select_character_out_result_enum_result_enum_ARRAYSIZE = select_character_out_result_enum_result_enum_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* select_character_out_result_enum_descriptor();
+template<typename T>
+inline const std::string& select_character_out_result_enum_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, select_character_out_result_enum>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function select_character_out_result_enum_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    select_character_out_result_enum_descriptor(), enum_t_value);
+}
+inline bool select_character_out_result_enum_Parse(
+    const std::string& name, select_character_out_result_enum* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<select_character_out_result_enum>(
+    select_character_out_result_enum_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -433,23 +534,23 @@ class player :
 };
 // -------------------------------------------------------------------
 
-class playerBook :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:mud.playerBook) */ {
+class player_book :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:mud.player_book) */ {
  public:
-  playerBook();
-  virtual ~playerBook();
+  player_book();
+  virtual ~player_book();
 
-  playerBook(const playerBook& from);
-  playerBook(playerBook&& from) noexcept
-    : playerBook() {
+  player_book(const player_book& from);
+  player_book(player_book&& from) noexcept
+    : player_book() {
     *this = ::std::move(from);
   }
 
-  inline playerBook& operator=(const playerBook& from) {
+  inline player_book& operator=(const player_book& from) {
     CopyFrom(from);
     return *this;
   }
-  inline playerBook& operator=(playerBook&& from) noexcept {
+  inline player_book& operator=(player_book&& from) noexcept {
     if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -467,37 +568,37 @@ class playerBook :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return GetMetadataStatic().reflection;
   }
-  static const playerBook& default_instance();
+  static const player_book& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const playerBook* internal_default_instance() {
-    return reinterpret_cast<const playerBook*>(
-               &_playerBook_default_instance_);
+  static inline const player_book* internal_default_instance() {
+    return reinterpret_cast<const player_book*>(
+               &_player_book_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(playerBook& a, playerBook& b) {
+  friend void swap(player_book& a, player_book& b) {
     a.Swap(&b);
   }
-  inline void Swap(playerBook* other) {
+  inline void Swap(player_book* other) {
     if (other == this) return;
     InternalSwap(other);
   }
 
   // implements Message ----------------------------------------------
 
-  inline playerBook* New() const final {
-    return CreateMaybeMessage<playerBook>(nullptr);
+  inline player_book* New() const final {
+    return CreateMaybeMessage<player_book>(nullptr);
   }
 
-  playerBook* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<playerBook>(arena);
+  player_book* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<player_book>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const playerBook& from);
-  void MergeFrom(const playerBook& from);
+  void CopyFrom(const player_book& from);
+  void MergeFrom(const player_book& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -511,10 +612,10 @@ class playerBook :
   inline void SharedCtor();
   inline void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(playerBook* other);
+  void InternalSwap(player_book* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "mud.playerBook";
+    return "mud.player_book";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -559,7 +660,7 @@ class playerBook :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::mud::player >&
       players() const;
 
-  // @@protoc_insertion_point(class_scope:mud.playerBook)
+  // @@protoc_insertion_point(class_scope:mud.player_book)
  private:
   class _Internal;
 
@@ -2317,6 +2418,957 @@ class tile_book :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_mud_5flib_2eproto;
 };
+// -------------------------------------------------------------------
+
+class token_in :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:mud.token_in) */ {
+ public:
+  token_in();
+  virtual ~token_in();
+
+  token_in(const token_in& from);
+  token_in(token_in&& from) noexcept
+    : token_in() {
+    *this = ::std::move(from);
+  }
+
+  inline token_in& operator=(const token_in& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline token_in& operator=(token_in&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const token_in& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const token_in* internal_default_instance() {
+    return reinterpret_cast<const token_in*>(
+               &_token_in_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    12;
+
+  friend void swap(token_in& a, token_in& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(token_in* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline token_in* New() const final {
+    return CreateMaybeMessage<token_in>(nullptr);
+  }
+
+  token_in* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<token_in>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const token_in& from);
+  void MergeFrom(const token_in& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(token_in* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "mud.token_in";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_mud_5flib_2eproto);
+    return ::descriptor_table_mud_5flib_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:mud.token_in)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_mud_5flib_2eproto;
+};
+// -------------------------------------------------------------------
+
+class token_out :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:mud.token_out) */ {
+ public:
+  token_out();
+  virtual ~token_out();
+
+  token_out(const token_out& from);
+  token_out(token_out&& from) noexcept
+    : token_out() {
+    *this = ::std::move(from);
+  }
+
+  inline token_out& operator=(const token_out& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline token_out& operator=(token_out&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const token_out& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const token_out* internal_default_instance() {
+    return reinterpret_cast<const token_out*>(
+               &_token_out_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  friend void swap(token_out& a, token_out& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(token_out* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline token_out* New() const final {
+    return CreateMaybeMessage<token_out>(nullptr);
+  }
+
+  token_out* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<token_out>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const token_out& from);
+  void MergeFrom(const token_out& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(token_out* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "mud.token_out";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_mud_5flib_2eproto);
+    return ::descriptor_table_mud_5flib_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTokenFieldNumber = 1,
+  };
+  // int64 token = 1;
+  void clear_token();
+  ::PROTOBUF_NAMESPACE_ID::int64 token() const;
+  void set_token(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_token() const;
+  void _internal_set_token(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:mud.token_out)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::int64 token_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_mud_5flib_2eproto;
+};
+// -------------------------------------------------------------------
+
+class login_in :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:mud.login_in) */ {
+ public:
+  login_in();
+  virtual ~login_in();
+
+  login_in(const login_in& from);
+  login_in(login_in&& from) noexcept
+    : login_in() {
+    *this = ::std::move(from);
+  }
+
+  inline login_in& operator=(const login_in& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline login_in& operator=(login_in&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const login_in& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const login_in* internal_default_instance() {
+    return reinterpret_cast<const login_in*>(
+               &_login_in_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    14;
+
+  friend void swap(login_in& a, login_in& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(login_in* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline login_in* New() const final {
+    return CreateMaybeMessage<login_in>(nullptr);
+  }
+
+  login_in* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<login_in>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const login_in& from);
+  void MergeFrom(const login_in& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(login_in* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "mud.login_in";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_mud_5flib_2eproto);
+    return ::descriptor_table_mud_5flib_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kHashFieldNumber = 2,
+    kTokenFieldNumber = 3,
+  };
+  // string name = 1;
+  void clear_name();
+  const std::string& name() const;
+  void set_name(const std::string& value);
+  void set_name(std::string&& value);
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  std::string* mutable_name();
+  std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // string hash = 2;
+  void clear_hash();
+  const std::string& hash() const;
+  void set_hash(const std::string& value);
+  void set_hash(std::string&& value);
+  void set_hash(const char* value);
+  void set_hash(const char* value, size_t size);
+  std::string* mutable_hash();
+  std::string* release_hash();
+  void set_allocated_hash(std::string* hash);
+  private:
+  const std::string& _internal_hash() const;
+  void _internal_set_hash(const std::string& value);
+  std::string* _internal_mutable_hash();
+  public:
+
+  // int64 token = 3;
+  void clear_token();
+  ::PROTOBUF_NAMESPACE_ID::int64 token() const;
+  void set_token(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_token() const;
+  void _internal_set_token(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:mud.login_in)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr hash_;
+  ::PROTOBUF_NAMESPACE_ID::int64 token_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_mud_5flib_2eproto;
+};
+// -------------------------------------------------------------------
+
+class login_out :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:mud.login_out) */ {
+ public:
+  login_out();
+  virtual ~login_out();
+
+  login_out(const login_out& from);
+  login_out(login_out&& from) noexcept
+    : login_out() {
+    *this = ::std::move(from);
+  }
+
+  inline login_out& operator=(const login_out& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline login_out& operator=(login_out&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const login_out& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const login_out* internal_default_instance() {
+    return reinterpret_cast<const login_out*>(
+               &_login_out_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(login_out& a, login_out& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(login_out* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline login_out* New() const final {
+    return CreateMaybeMessage<login_out>(nullptr);
+  }
+
+  login_out* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<login_out>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const login_out& from);
+  void MergeFrom(const login_out& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(login_out* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "mud.login_out";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_mud_5flib_2eproto);
+    return ::descriptor_table_mud_5flib_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  typedef login_out_login_state_enum login_state_enum;
+  static constexpr login_state_enum OK =
+    login_out_login_state_enum_OK;
+  static constexpr login_state_enum FAILED =
+    login_out_login_state_enum_FAILED;
+  static inline bool login_state_enum_IsValid(int value) {
+    return login_out_login_state_enum_IsValid(value);
+  }
+  static constexpr login_state_enum login_state_enum_MIN =
+    login_out_login_state_enum_login_state_enum_MIN;
+  static constexpr login_state_enum login_state_enum_MAX =
+    login_out_login_state_enum_login_state_enum_MAX;
+  static constexpr int login_state_enum_ARRAYSIZE =
+    login_out_login_state_enum_login_state_enum_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  login_state_enum_descriptor() {
+    return login_out_login_state_enum_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& login_state_enum_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, login_state_enum>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function login_state_enum_Name.");
+    return login_out_login_state_enum_Name(enum_t_value);
+  }
+  static inline bool login_state_enum_Parse(const std::string& name,
+      login_state_enum* value) {
+    return login_out_login_state_enum_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCharactersFieldNumber = 1,
+    kLoginStateFieldNumber = 2,
+  };
+  // repeated .mud.character characters = 1;
+  int characters_size() const;
+  private:
+  int _internal_characters_size() const;
+  public:
+  void clear_characters();
+  ::mud::character* mutable_characters(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::mud::character >*
+      mutable_characters();
+  private:
+  const ::mud::character& _internal_characters(int index) const;
+  ::mud::character* _internal_add_characters();
+  public:
+  const ::mud::character& characters(int index) const;
+  ::mud::character* add_characters();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::mud::character >&
+      characters() const;
+
+  // .mud.login_out.login_state_enum login_state = 2;
+  void clear_login_state();
+  ::mud::login_out_login_state_enum login_state() const;
+  void set_login_state(::mud::login_out_login_state_enum value);
+  private:
+  ::mud::login_out_login_state_enum _internal_login_state() const;
+  void _internal_set_login_state(::mud::login_out_login_state_enum value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:mud.login_out)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::mud::character > characters_;
+  int login_state_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_mud_5flib_2eproto;
+};
+// -------------------------------------------------------------------
+
+class select_character_in :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:mud.select_character_in) */ {
+ public:
+  select_character_in();
+  virtual ~select_character_in();
+
+  select_character_in(const select_character_in& from);
+  select_character_in(select_character_in&& from) noexcept
+    : select_character_in() {
+    *this = ::std::move(from);
+  }
+
+  inline select_character_in& operator=(const select_character_in& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline select_character_in& operator=(select_character_in&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const select_character_in& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const select_character_in* internal_default_instance() {
+    return reinterpret_cast<const select_character_in*>(
+               &_select_character_in_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(select_character_in& a, select_character_in& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(select_character_in* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline select_character_in* New() const final {
+    return CreateMaybeMessage<select_character_in>(nullptr);
+  }
+
+  select_character_in* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<select_character_in>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const select_character_in& from);
+  void MergeFrom(const select_character_in& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(select_character_in* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "mud.select_character_in";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_mud_5flib_2eproto);
+    return ::descriptor_table_mud_5flib_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  typedef select_character_in_action_type action_type;
+  static constexpr action_type SELECT =
+    select_character_in_action_type_SELECT;
+  static constexpr action_type CREATE =
+    select_character_in_action_type_CREATE;
+  static inline bool action_type_IsValid(int value) {
+    return select_character_in_action_type_IsValid(value);
+  }
+  static constexpr action_type action_type_MIN =
+    select_character_in_action_type_action_type_MIN;
+  static constexpr action_type action_type_MAX =
+    select_character_in_action_type_action_type_MAX;
+  static constexpr int action_type_ARRAYSIZE =
+    select_character_in_action_type_action_type_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  action_type_descriptor() {
+    return select_character_in_action_type_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& action_type_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, action_type>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function action_type_Name.");
+    return select_character_in_action_type_Name(enum_t_value);
+  }
+  static inline bool action_type_Parse(const std::string& name,
+      action_type* value) {
+    return select_character_in_action_type_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kTokenFieldNumber = 2,
+    kActionFieldNumber = 3,
+  };
+  // string name = 1;
+  void clear_name();
+  const std::string& name() const;
+  void set_name(const std::string& value);
+  void set_name(std::string&& value);
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  std::string* mutable_name();
+  std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // int64 token = 2;
+  void clear_token();
+  ::PROTOBUF_NAMESPACE_ID::int64 token() const;
+  void set_token(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_token() const;
+  void _internal_set_token(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // .mud.select_character_in.action_type action = 3;
+  void clear_action();
+  ::mud::select_character_in_action_type action() const;
+  void set_action(::mud::select_character_in_action_type value);
+  private:
+  ::mud::select_character_in_action_type _internal_action() const;
+  void _internal_set_action(::mud::select_character_in_action_type value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:mud.select_character_in)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::int64 token_;
+  int action_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_mud_5flib_2eproto;
+};
+// -------------------------------------------------------------------
+
+class select_character_out :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:mud.select_character_out) */ {
+ public:
+  select_character_out();
+  virtual ~select_character_out();
+
+  select_character_out(const select_character_out& from);
+  select_character_out(select_character_out&& from) noexcept
+    : select_character_out() {
+    *this = ::std::move(from);
+  }
+
+  inline select_character_out& operator=(const select_character_out& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline select_character_out& operator=(select_character_out&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const select_character_out& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const select_character_out* internal_default_instance() {
+    return reinterpret_cast<const select_character_out*>(
+               &_select_character_out_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    17;
+
+  friend void swap(select_character_out& a, select_character_out& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(select_character_out* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline select_character_out* New() const final {
+    return CreateMaybeMessage<select_character_out>(nullptr);
+  }
+
+  select_character_out* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<select_character_out>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const select_character_out& from);
+  void MergeFrom(const select_character_out& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(select_character_out* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "mud.select_character_out";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_mud_5flib_2eproto);
+    return ::descriptor_table_mud_5flib_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  typedef select_character_out_result_enum result_enum;
+  static constexpr result_enum OK =
+    select_character_out_result_enum_OK;
+  static constexpr result_enum NOT_FOUND =
+    select_character_out_result_enum_NOT_FOUND;
+  static constexpr result_enum NAME_ALREADY_EXIST =
+    select_character_out_result_enum_NAME_ALREADY_EXIST;
+  static constexpr result_enum ERROR =
+    select_character_out_result_enum_ERROR;
+  static inline bool result_enum_IsValid(int value) {
+    return select_character_out_result_enum_IsValid(value);
+  }
+  static constexpr result_enum result_enum_MIN =
+    select_character_out_result_enum_result_enum_MIN;
+  static constexpr result_enum result_enum_MAX =
+    select_character_out_result_enum_result_enum_MAX;
+  static constexpr int result_enum_ARRAYSIZE =
+    select_character_out_result_enum_result_enum_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  result_enum_descriptor() {
+    return select_character_out_result_enum_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& result_enum_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, result_enum>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function result_enum_Name.");
+    return select_character_out_result_enum_Name(enum_t_value);
+  }
+  static inline bool result_enum_Parse(const std::string& name,
+      result_enum* value) {
+    return select_character_out_result_enum_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSelectedCharacterFieldNumber = 1,
+    kResultFieldNumber = 2,
+  };
+  // .mud.character selected_character = 1;
+  bool has_selected_character() const;
+  private:
+  bool _internal_has_selected_character() const;
+  public:
+  void clear_selected_character();
+  const ::mud::character& selected_character() const;
+  ::mud::character* release_selected_character();
+  ::mud::character* mutable_selected_character();
+  void set_allocated_selected_character(::mud::character* selected_character);
+  private:
+  const ::mud::character& _internal_selected_character() const;
+  ::mud::character* _internal_mutable_selected_character();
+  public:
+
+  // .mud.select_character_out.result_enum result = 2;
+  void clear_result();
+  ::mud::select_character_out_result_enum result() const;
+  void set_result(::mud::select_character_out_result_enum value);
+  private:
+  ::mud::select_character_out_result_enum _internal_result() const;
+  void _internal_set_result(::mud::select_character_out_result_enum value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:mud.select_character_out)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::mud::character* selected_character_;
+  int result_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_mud_5flib_2eproto;
+};
 // ===================================================================
 
 
@@ -2517,44 +3569,44 @@ player::mutable_idcharacters() {
 
 // -------------------------------------------------------------------
 
-// playerBook
+// player_book
 
 // repeated .mud.player players = 1;
-inline int playerBook::_internal_players_size() const {
+inline int player_book::_internal_players_size() const {
   return players_.size();
 }
-inline int playerBook::players_size() const {
+inline int player_book::players_size() const {
   return _internal_players_size();
 }
-inline void playerBook::clear_players() {
+inline void player_book::clear_players() {
   players_.Clear();
 }
-inline ::mud::player* playerBook::mutable_players(int index) {
-  // @@protoc_insertion_point(field_mutable:mud.playerBook.players)
+inline ::mud::player* player_book::mutable_players(int index) {
+  // @@protoc_insertion_point(field_mutable:mud.player_book.players)
   return players_.Mutable(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::mud::player >*
-playerBook::mutable_players() {
-  // @@protoc_insertion_point(field_mutable_list:mud.playerBook.players)
+player_book::mutable_players() {
+  // @@protoc_insertion_point(field_mutable_list:mud.player_book.players)
   return &players_;
 }
-inline const ::mud::player& playerBook::_internal_players(int index) const {
+inline const ::mud::player& player_book::_internal_players(int index) const {
   return players_.Get(index);
 }
-inline const ::mud::player& playerBook::players(int index) const {
-  // @@protoc_insertion_point(field_get:mud.playerBook.players)
+inline const ::mud::player& player_book::players(int index) const {
+  // @@protoc_insertion_point(field_get:mud.player_book.players)
   return _internal_players(index);
 }
-inline ::mud::player* playerBook::_internal_add_players() {
+inline ::mud::player* player_book::_internal_add_players() {
   return players_.Add();
 }
-inline ::mud::player* playerBook::add_players() {
-  // @@protoc_insertion_point(field_add:mud.playerBook.players)
+inline ::mud::player* player_book::add_players() {
+  // @@protoc_insertion_point(field_add:mud.player_book.players)
   return _internal_add_players();
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::mud::player >&
-playerBook::players() const {
-  // @@protoc_insertion_point(field_list:mud.playerBook.players)
+player_book::players() const {
+  // @@protoc_insertion_point(field_list:mud.player_book.players)
   return players_;
 }
 
@@ -3592,9 +4644,444 @@ tile_book::tiles() const {
   return tiles_;
 }
 
+// -------------------------------------------------------------------
+
+// token_in
+
+// -------------------------------------------------------------------
+
+// token_out
+
+// int64 token = 1;
+inline void token_out::clear_token() {
+  token_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 token_out::_internal_token() const {
+  return token_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 token_out::token() const {
+  // @@protoc_insertion_point(field_get:mud.token_out.token)
+  return _internal_token();
+}
+inline void token_out::_internal_set_token(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  token_ = value;
+}
+inline void token_out::set_token(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_token(value);
+  // @@protoc_insertion_point(field_set:mud.token_out.token)
+}
+
+// -------------------------------------------------------------------
+
+// login_in
+
+// string name = 1;
+inline void login_in::clear_name() {
+  name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& login_in::name() const {
+  // @@protoc_insertion_point(field_get:mud.login_in.name)
+  return _internal_name();
+}
+inline void login_in::set_name(const std::string& value) {
+  _internal_set_name(value);
+  // @@protoc_insertion_point(field_set:mud.login_in.name)
+}
+inline std::string* login_in::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:mud.login_in.name)
+  return _internal_mutable_name();
+}
+inline const std::string& login_in::_internal_name() const {
+  return name_.GetNoArena();
+}
+inline void login_in::_internal_set_name(const std::string& value) {
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void login_in::set_name(std::string&& value) {
+  
+  name_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:mud.login_in.name)
+}
+inline void login_in::set_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:mud.login_in.name)
+}
+inline void login_in::set_name(const char* value, size_t size) {
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:mud.login_in.name)
+}
+inline std::string* login_in::_internal_mutable_name() {
+  
+  return name_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* login_in::release_name() {
+  // @@protoc_insertion_point(field_release:mud.login_in.name)
+  
+  return name_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void login_in::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name);
+  // @@protoc_insertion_point(field_set_allocated:mud.login_in.name)
+}
+
+// string hash = 2;
+inline void login_in::clear_hash() {
+  hash_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& login_in::hash() const {
+  // @@protoc_insertion_point(field_get:mud.login_in.hash)
+  return _internal_hash();
+}
+inline void login_in::set_hash(const std::string& value) {
+  _internal_set_hash(value);
+  // @@protoc_insertion_point(field_set:mud.login_in.hash)
+}
+inline std::string* login_in::mutable_hash() {
+  // @@protoc_insertion_point(field_mutable:mud.login_in.hash)
+  return _internal_mutable_hash();
+}
+inline const std::string& login_in::_internal_hash() const {
+  return hash_.GetNoArena();
+}
+inline void login_in::_internal_set_hash(const std::string& value) {
+  
+  hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void login_in::set_hash(std::string&& value) {
+  
+  hash_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:mud.login_in.hash)
+}
+inline void login_in::set_hash(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:mud.login_in.hash)
+}
+inline void login_in::set_hash(const char* value, size_t size) {
+  
+  hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:mud.login_in.hash)
+}
+inline std::string* login_in::_internal_mutable_hash() {
+  
+  return hash_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* login_in::release_hash() {
+  // @@protoc_insertion_point(field_release:mud.login_in.hash)
+  
+  return hash_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void login_in::set_allocated_hash(std::string* hash) {
+  if (hash != nullptr) {
+    
+  } else {
+    
+  }
+  hash_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), hash);
+  // @@protoc_insertion_point(field_set_allocated:mud.login_in.hash)
+}
+
+// int64 token = 3;
+inline void login_in::clear_token() {
+  token_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 login_in::_internal_token() const {
+  return token_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 login_in::token() const {
+  // @@protoc_insertion_point(field_get:mud.login_in.token)
+  return _internal_token();
+}
+inline void login_in::_internal_set_token(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  token_ = value;
+}
+inline void login_in::set_token(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_token(value);
+  // @@protoc_insertion_point(field_set:mud.login_in.token)
+}
+
+// -------------------------------------------------------------------
+
+// login_out
+
+// repeated .mud.character characters = 1;
+inline int login_out::_internal_characters_size() const {
+  return characters_.size();
+}
+inline int login_out::characters_size() const {
+  return _internal_characters_size();
+}
+inline void login_out::clear_characters() {
+  characters_.Clear();
+}
+inline ::mud::character* login_out::mutable_characters(int index) {
+  // @@protoc_insertion_point(field_mutable:mud.login_out.characters)
+  return characters_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::mud::character >*
+login_out::mutable_characters() {
+  // @@protoc_insertion_point(field_mutable_list:mud.login_out.characters)
+  return &characters_;
+}
+inline const ::mud::character& login_out::_internal_characters(int index) const {
+  return characters_.Get(index);
+}
+inline const ::mud::character& login_out::characters(int index) const {
+  // @@protoc_insertion_point(field_get:mud.login_out.characters)
+  return _internal_characters(index);
+}
+inline ::mud::character* login_out::_internal_add_characters() {
+  return characters_.Add();
+}
+inline ::mud::character* login_out::add_characters() {
+  // @@protoc_insertion_point(field_add:mud.login_out.characters)
+  return _internal_add_characters();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::mud::character >&
+login_out::characters() const {
+  // @@protoc_insertion_point(field_list:mud.login_out.characters)
+  return characters_;
+}
+
+// .mud.login_out.login_state_enum login_state = 2;
+inline void login_out::clear_login_state() {
+  login_state_ = 0;
+}
+inline ::mud::login_out_login_state_enum login_out::_internal_login_state() const {
+  return static_cast< ::mud::login_out_login_state_enum >(login_state_);
+}
+inline ::mud::login_out_login_state_enum login_out::login_state() const {
+  // @@protoc_insertion_point(field_get:mud.login_out.login_state)
+  return _internal_login_state();
+}
+inline void login_out::_internal_set_login_state(::mud::login_out_login_state_enum value) {
+  
+  login_state_ = value;
+}
+inline void login_out::set_login_state(::mud::login_out_login_state_enum value) {
+  _internal_set_login_state(value);
+  // @@protoc_insertion_point(field_set:mud.login_out.login_state)
+}
+
+// -------------------------------------------------------------------
+
+// select_character_in
+
+// string name = 1;
+inline void select_character_in::clear_name() {
+  name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& select_character_in::name() const {
+  // @@protoc_insertion_point(field_get:mud.select_character_in.name)
+  return _internal_name();
+}
+inline void select_character_in::set_name(const std::string& value) {
+  _internal_set_name(value);
+  // @@protoc_insertion_point(field_set:mud.select_character_in.name)
+}
+inline std::string* select_character_in::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:mud.select_character_in.name)
+  return _internal_mutable_name();
+}
+inline const std::string& select_character_in::_internal_name() const {
+  return name_.GetNoArena();
+}
+inline void select_character_in::_internal_set_name(const std::string& value) {
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void select_character_in::set_name(std::string&& value) {
+  
+  name_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:mud.select_character_in.name)
+}
+inline void select_character_in::set_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:mud.select_character_in.name)
+}
+inline void select_character_in::set_name(const char* value, size_t size) {
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:mud.select_character_in.name)
+}
+inline std::string* select_character_in::_internal_mutable_name() {
+  
+  return name_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* select_character_in::release_name() {
+  // @@protoc_insertion_point(field_release:mud.select_character_in.name)
+  
+  return name_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void select_character_in::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name);
+  // @@protoc_insertion_point(field_set_allocated:mud.select_character_in.name)
+}
+
+// int64 token = 2;
+inline void select_character_in::clear_token() {
+  token_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 select_character_in::_internal_token() const {
+  return token_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 select_character_in::token() const {
+  // @@protoc_insertion_point(field_get:mud.select_character_in.token)
+  return _internal_token();
+}
+inline void select_character_in::_internal_set_token(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  token_ = value;
+}
+inline void select_character_in::set_token(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_token(value);
+  // @@protoc_insertion_point(field_set:mud.select_character_in.token)
+}
+
+// .mud.select_character_in.action_type action = 3;
+inline void select_character_in::clear_action() {
+  action_ = 0;
+}
+inline ::mud::select_character_in_action_type select_character_in::_internal_action() const {
+  return static_cast< ::mud::select_character_in_action_type >(action_);
+}
+inline ::mud::select_character_in_action_type select_character_in::action() const {
+  // @@protoc_insertion_point(field_get:mud.select_character_in.action)
+  return _internal_action();
+}
+inline void select_character_in::_internal_set_action(::mud::select_character_in_action_type value) {
+  
+  action_ = value;
+}
+inline void select_character_in::set_action(::mud::select_character_in_action_type value) {
+  _internal_set_action(value);
+  // @@protoc_insertion_point(field_set:mud.select_character_in.action)
+}
+
+// -------------------------------------------------------------------
+
+// select_character_out
+
+// .mud.character selected_character = 1;
+inline bool select_character_out::_internal_has_selected_character() const {
+  return this != internal_default_instance() && selected_character_ != nullptr;
+}
+inline bool select_character_out::has_selected_character() const {
+  return _internal_has_selected_character();
+}
+inline void select_character_out::clear_selected_character() {
+  if (GetArenaNoVirtual() == nullptr && selected_character_ != nullptr) {
+    delete selected_character_;
+  }
+  selected_character_ = nullptr;
+}
+inline const ::mud::character& select_character_out::_internal_selected_character() const {
+  const ::mud::character* p = selected_character_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::mud::character*>(
+      &::mud::_character_default_instance_);
+}
+inline const ::mud::character& select_character_out::selected_character() const {
+  // @@protoc_insertion_point(field_get:mud.select_character_out.selected_character)
+  return _internal_selected_character();
+}
+inline ::mud::character* select_character_out::release_selected_character() {
+  // @@protoc_insertion_point(field_release:mud.select_character_out.selected_character)
+  
+  ::mud::character* temp = selected_character_;
+  selected_character_ = nullptr;
+  return temp;
+}
+inline ::mud::character* select_character_out::_internal_mutable_selected_character() {
+  
+  if (selected_character_ == nullptr) {
+    auto* p = CreateMaybeMessage<::mud::character>(GetArenaNoVirtual());
+    selected_character_ = p;
+  }
+  return selected_character_;
+}
+inline ::mud::character* select_character_out::mutable_selected_character() {
+  // @@protoc_insertion_point(field_mutable:mud.select_character_out.selected_character)
+  return _internal_mutable_selected_character();
+}
+inline void select_character_out::set_allocated_selected_character(::mud::character* selected_character) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete selected_character_;
+  }
+  if (selected_character) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      selected_character = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, selected_character, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  selected_character_ = selected_character;
+  // @@protoc_insertion_point(field_set_allocated:mud.select_character_out.selected_character)
+}
+
+// .mud.select_character_out.result_enum result = 2;
+inline void select_character_out::clear_result() {
+  result_ = 0;
+}
+inline ::mud::select_character_out_result_enum select_character_out::_internal_result() const {
+  return static_cast< ::mud::select_character_out_result_enum >(result_);
+}
+inline ::mud::select_character_out_result_enum select_character_out::result() const {
+  // @@protoc_insertion_point(field_get:mud.select_character_out.result)
+  return _internal_result();
+}
+inline void select_character_out::_internal_set_result(::mud::select_character_out_result_enum value) {
+  
+  result_ = value;
+}
+inline void select_character_out::set_result(::mud::select_character_out_result_enum value) {
+  _internal_set_result(value);
+  // @@protoc_insertion_point(field_set:mud.select_character_out.result)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -3648,6 +5135,21 @@ template <> struct is_proto_enum< ::mud::tile_resident_type> : ::std::true_type 
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::mud::tile_resident_type>() {
   return ::mud::tile_resident_type_descriptor();
+}
+template <> struct is_proto_enum< ::mud::login_out_login_state_enum> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::mud::login_out_login_state_enum>() {
+  return ::mud::login_out_login_state_enum_descriptor();
+}
+template <> struct is_proto_enum< ::mud::select_character_in_action_type> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::mud::select_character_in_action_type>() {
+  return ::mud::select_character_in_action_type_descriptor();
+}
+template <> struct is_proto_enum< ::mud::select_character_out_result_enum> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::mud::select_character_out_result_enum>() {
+  return ::mud::select_character_out_result_enum_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE
