@@ -11,66 +11,31 @@ Game::Game()
 	}
 }
 
-void Game::run()
+bool Game::runOnce()
 {
-	for (auto& field : tiles)
-	{
-		std::cout << field.second << std::endl;
-	}
-
-	showCharacters();
-	std::cout << "Select your character or type \"new\":" << std::endl;
-
-
-	characterId = -1;
-	std::string characterName;
-	while (characterId == -1)
-	{
-		std::cin >> characterName;
-		if (characterName == "new")
-		{
-			createCharacter();
-		}
-		else 
-		{
-			for (auto& field : characters)
-			{
-				if (field.second.name() == characterName)
-				{
-					characterId = field.first;
-					break;
-				}
-			}
-		}
-	}
-
-	keyboard.run();
 	bool loop = true;
-	while(loop)
+
+	for (auto& character : connectedCharacters)
 	{
-
-		input_t input = execute_keyboard();
-		
-		processCharacter(input);
-
-		for (auto& enemy : enemies)
-		{
-			processEnemy(enemy.second);
-		}
-
-		for (auto& character : characters)
-		{
-			auto& characterLife = getAttribute(character.second, mud::attribute::LIFE);
-			if (characterLife.value() == 0)
-			{
-				std::cout << "You are dead" << std::endl;
-				loop = false;
-			}
-		}
-
-		Sleep(1000);
+		processCharacter(character.first);
 	}
-	keyboard.stop();
+
+	for (auto& enemy : enemies)
+	{
+		processEnemy(enemy.second);
+	}
+
+	for (auto& character : connectedCharacters)
+	{
+		auto& characterLife = getAttribute(*character.second, mud::attribute::LIFE);
+		if (characterLife.value() == 0)
+		{
+			characterDead(character.first);
+		}
+	}
+
+	iteration++;
+	return loop;
 }
 
 mud::player Game::GetPlayer(std::string name)
@@ -87,7 +52,7 @@ mud::player Game::GetPlayer(std::string name)
 
 mud::character Game::CreateCharacter(std::string name, std::int64_t playerId)
 {
-	int maxId = 0;
+	std::int64_t maxId = 0;
 	for (const auto& field : characters)
 	{
 		if (field.first > maxId) {
@@ -110,8 +75,6 @@ mud::character Game::CreateCharacter(std::string name, std::int64_t playerId)
 		if (field.second.occupant_type() == mud::tile::NOBODY)
 		{
 			character.set_tile_id(field.first);
-			field.second.set_occupant_type(mud::tile::CHARACTER);
-			field.second.set_occupant_id(character.id());
 			break;
 		}
 	}
@@ -128,28 +91,43 @@ mud::character Game::CreateCharacter(std::string name, std::int64_t playerId)
 	*character.add_attributes() = strenght;
 
 
-	characterId = character.id();
-	characters.insert({ characterId, character });
+	characters.insert({ character.id(), character });
+	connectedCharacters.insert({ character.id(), &character });
 
 	mud::player& player = players[playerId];
 	player.add_idcharacters(character.id());
 
 	saveData();
+
+	mud::tile& tile = tiles[character.tile_id()];
+	tile.set_occupant_type(mud::tile::CHARACTER);
+	tile.set_occupant_id(character.id());
 	return character;
 }
 
-input_t Game::execute_keyboard()
+bool Game::ConnectCharacter(std::int64_t characterId)
 {
-	input_t entry = input_t::NONE;
-	// Get keyboard entries.
-	for (const auto& field : keyboard.input_key)
+	mud::character& character = characters[characterId];
+	mud::tile& tile = tiles[character.tile_id()];
+	if (tile.occupant_type() == mud::tile::EMPTY)
 	{
-		if (keyboard.check_released_input(field.first))
-		{
-			return field.first;
-		}
+		tile.set_occupant_type(mud::tile::CHARACTER);
+		tile.set_occupant_id(characterId);
+		connectedCharacters[characterId] = &character;
+		return true;
 	}
-	return entry;
+
+	return false;
+}
+
+void Game::DisconnectCharacter(std::int64_t characterId)
+{
+	mud::character& character = *connectedCharacters[characterId];
+	mud::tile& tile = tiles[character.tile_id()];
+	tile.set_occupant_type(mud::tile::NOBODY);
+	tile.set_occupant_id(0);
+	std::cout << character.name() << " leave the game." << std::endl;
+	connectedCharacters.erase(connectedCharacters.find(characterId));
 }
 
 void Game::initMap()
@@ -284,7 +262,7 @@ void Game::showCharacters()
 
 bool Game::createCharacter()
 {
-	int maxId = 0;
+	std::int64_t maxId = 0;
 	for (const auto& field : characters)
 	{
 		if (field.first > maxId) {
@@ -340,9 +318,7 @@ bool Game::createCharacter()
 	strenght.set_value(10);
 	*character.add_attributes() = strenght;
 
-
-	characterId = character.id();
-	characters.insert({ characterId, character });
+	characters.insert({ character.id(), character });
 
 	std::cout << "Adding character:" << std::endl;
 	std::cout << character << std::endl;
@@ -350,18 +326,18 @@ bool Game::createCharacter()
 	return saveBook("characters.json", getCharacterBook());
 }
 
-void Game::processCharacter(input_t input)
+void Game::processCharacter(std::int64_t characterId)
 {
-	mud::character& character = characters[characterId];
+	mud::character& character = *connectedCharacters[characterId];
 	mud::tile& tile = tiles[character.tile_id()];
 	mud::tile destination;
 	mud::direction direction{};
 	std::int64_t facingTileId = 0;
 	bool foundDestination = false;
-	switch (input) 
-	{
-	case input_t::ATTACK:
 
+	switch (charactersInputs[characterId])
+	{
+	case mud::play_in::ATTACK:
 		for (auto& neighbour : tile.neighbours())
 		{
 			if (neighbour.neighbour_direction().value() == character.facing().value())
@@ -399,10 +375,10 @@ void Game::processCharacter(input_t input)
 			std::cout << "You hit nothing" << std::endl;
 		}
 		break;
-	case input_t::FORWARD:
+	case mud::play_in::FORWARD:
 
 		for (const auto& neighbour : tile.neighbours()) {
-			if (neighbour.neighbour_direction().value() == characters[characterId].facing().value())
+			if (neighbour.neighbour_direction().value() == character.facing().value())
 			{
 				destination = tiles[neighbour.neighbour_tile_id()];
 				foundDestination = true;
@@ -423,34 +399,34 @@ void Game::processCharacter(input_t input)
 		}
 		else
 		{
-			std::cout << "No tile forward you " << std::endl;
+			std::cout << "No tile forward you " << getDirection(character.facing()) << std::endl;
 		}
 		break;
 
-	case input_t::LEFT:
+	case mud::play_in::LEFT:
 		direction.set_value(turnLeft(character.facing().value()));
 		*character.mutable_facing() = direction;
 		std::cout << "You face " << getDirection(direction) << std::endl;
 		break;
 
-	case input_t::RIGHT:
+	case mud::play_in::RIGHT:
 		direction.set_value(turnRight(character.facing().value()));
 		*character.mutable_facing() = direction;
 		std::cout << "You face " << getDirection(direction) << std::endl;
 		break;
 
-	case input_t::INFO:
+	case mud::play_in::INFO:
 		std::cout << std::endl << "Character:" << std::endl;
-		std::cout << characters[characterId] << std::endl;
+		std::cout << character << std::endl;
 		std::cout << std::endl << "Tile:" << std::endl;
-		std::cout << tiles[characters[characterId].tile_id()] << std::endl;
+		std::cout << tiles[character.tile_id()] << std::endl;
 		break;
 	}
 }
 
 void Game::processEnemy(mud::enemy& enemy)
 {
-	auto visiblesTilesIds = seeAround(enemy.tile_id(), 2);
+	auto visiblesTilesIds = seeAround(enemy.tile_id(), 1);
 	for (auto tileField : visiblesTilesIds)
 	{
 		mud::tile tile = tiles[tileField.first];
@@ -485,12 +461,12 @@ bool Game::movingCharacter(std::int64_t characterId, std::int64_t tileId)
 	mud::tile& tile = tiles[tileId];
 	if (tile.occupant_type() == mud::tile::NOBODY)
 	{
-		mud::tile& currentTile = tiles[characters[characterId].tile_id()];
+		mud::tile& currentTile = tiles[connectedCharacters[characterId]->tile_id()];
 		currentTile.set_occupant_id(0);
 		currentTile.set_occupant_type(mud::tile::NOBODY);
 		tile.set_occupant_id(characterId);
 		tile.set_occupant_type(mud::tile::CHARACTER);
-		characters[characterId].set_tile_id(tile.id());
+		connectedCharacters[characterId]->set_tile_id(tile.id());
 
 		return true;
 	}
@@ -527,7 +503,7 @@ void Game::enemyMoveOrAttack(mud::enemy& enemy)
 		}
 		else if (facingTile.occupant_type() == mud::tile::CHARACTER)
 		{
-			mud::character& character = characters[facingTile.occupant_id()];
+			mud::character& character = *connectedCharacters[facingTile.occupant_id()];
 			std::cout << "\a" << std::flush;
 			std::cout << enemy.name() << " attack " << character.name() << std::endl;
 
@@ -542,7 +518,6 @@ void Game::enemyMoveOrAttack(mud::enemy& enemy)
 	{
 		std::cerr << "ERROR: Enemy " << enemy.id() << " try to move nowhere." << std::endl;
 	}
-
 }
 
 void Game::hit(mud::attribute& lifeAttribute, std::int64_t damages)
@@ -561,6 +536,11 @@ void Game::deleteEnemy(std::int64_t enemyId)
 	tile.set_occupant_id(0);
 	tile.set_occupant_type(mud::tile::NOBODY);
 	enemies.erase(enemyId);
+}
+
+void Game::characterDead(std::int64_t characterId)
+{
+
 }
 
 std::map<std::int64_t, mud::direction_direction_enum> Game::seeAround(const std::int64_t& currentTileId, const int range)

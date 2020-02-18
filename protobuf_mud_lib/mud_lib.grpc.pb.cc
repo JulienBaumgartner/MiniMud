@@ -24,6 +24,8 @@ static const char* game_server_method_names[] = {
   "/mud.game_server/GetToken",
   "/mud.game_server/Login",
   "/mud.game_server/SelectCharacter",
+  "/mud.game_server/Play",
+  "/mud.game_server/Logout",
 };
 
 std::unique_ptr< game_server::Stub> game_server::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -36,6 +38,8 @@ game_server::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channe
   : channel_(channel), rpcmethod_GetToken_(game_server_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Login_(game_server_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SelectCharacter_(game_server_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Play_(game_server_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Logout_(game_server_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status game_server::Stub::GetToken(::grpc::ClientContext* context, const ::mud::token_in& request, ::mud::token_out* response) {
@@ -122,6 +126,62 @@ void game_server::Stub::experimental_async::SelectCharacter(::grpc::ClientContex
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::mud::select_character_out>::Create(channel_.get(), cq, rpcmethod_SelectCharacter_, context, request, false);
 }
 
+::grpc::Status game_server::Stub::Play(::grpc::ClientContext* context, const ::mud::play_in& request, ::mud::play_out* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Play_, context, request, response);
+}
+
+void game_server::Stub::experimental_async::Play(::grpc::ClientContext* context, const ::mud::play_in* request, ::mud::play_out* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Play_, context, request, response, std::move(f));
+}
+
+void game_server::Stub::experimental_async::Play(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::mud::play_out* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Play_, context, request, response, std::move(f));
+}
+
+void game_server::Stub::experimental_async::Play(::grpc::ClientContext* context, const ::mud::play_in* request, ::mud::play_out* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Play_, context, request, response, reactor);
+}
+
+void game_server::Stub::experimental_async::Play(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::mud::play_out* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Play_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::mud::play_out>* game_server::Stub::AsyncPlayRaw(::grpc::ClientContext* context, const ::mud::play_in& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::mud::play_out>::Create(channel_.get(), cq, rpcmethod_Play_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::mud::play_out>* game_server::Stub::PrepareAsyncPlayRaw(::grpc::ClientContext* context, const ::mud::play_in& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::mud::play_out>::Create(channel_.get(), cq, rpcmethod_Play_, context, request, false);
+}
+
+::grpc::Status game_server::Stub::Logout(::grpc::ClientContext* context, const ::mud::logout_in& request, ::mud::logout_out* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Logout_, context, request, response);
+}
+
+void game_server::Stub::experimental_async::Logout(::grpc::ClientContext* context, const ::mud::logout_in* request, ::mud::logout_out* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Logout_, context, request, response, std::move(f));
+}
+
+void game_server::Stub::experimental_async::Logout(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::mud::logout_out* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Logout_, context, request, response, std::move(f));
+}
+
+void game_server::Stub::experimental_async::Logout(::grpc::ClientContext* context, const ::mud::logout_in* request, ::mud::logout_out* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Logout_, context, request, response, reactor);
+}
+
+void game_server::Stub::experimental_async::Logout(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::mud::logout_out* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Logout_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::mud::logout_out>* game_server::Stub::AsyncLogoutRaw(::grpc::ClientContext* context, const ::mud::logout_in& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::mud::logout_out>::Create(channel_.get(), cq, rpcmethod_Logout_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::mud::logout_out>* game_server::Stub::PrepareAsyncLogoutRaw(::grpc::ClientContext* context, const ::mud::logout_in& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::mud::logout_out>::Create(channel_.get(), cq, rpcmethod_Logout_, context, request, false);
+}
+
 game_server::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       game_server_method_names[0],
@@ -138,6 +198,16 @@ game_server::Service::Service() {
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< game_server::Service, ::mud::select_character_in, ::mud::select_character_out>(
           std::mem_fn(&game_server::Service::SelectCharacter), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      game_server_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< game_server::Service, ::mud::play_in, ::mud::play_out>(
+          std::mem_fn(&game_server::Service::Play), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      game_server_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< game_server::Service, ::mud::logout_in, ::mud::logout_out>(
+          std::mem_fn(&game_server::Service::Logout), this)));
 }
 
 game_server::Service::~Service() {
@@ -158,6 +228,20 @@ game_server::Service::~Service() {
 }
 
 ::grpc::Status game_server::Service::SelectCharacter(::grpc::ServerContext* context, const ::mud::select_character_in* request, ::mud::select_character_out* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status game_server::Service::Play(::grpc::ServerContext* context, const ::mud::play_in* request, ::mud::play_out* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status game_server::Service::Logout(::grpc::ServerContext* context, const ::mud::logout_in* request, ::mud::logout_out* response) {
   (void) context;
   (void) request;
   (void) response;

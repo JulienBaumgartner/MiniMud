@@ -32,8 +32,8 @@ message attribute {
 	}
 	
 	attribute_name name = 1;
-	int32 value = 2;
-	int32 regen = 3;
+	int64 value = 2;
+	int64 regen = 3;
 }
 
 message character_state {
@@ -142,14 +142,58 @@ message select_character_out {
 		OK = 0;
 		NOT_FOUND = 1;
 		NAME_ALREADY_EXIST = 2;
-		ERROR = 3;
+		TILE_OCCUPED = 3;
 	}
 	character selected_character = 1;
 	result_enum result = 2;
+}
+
+message play_in {
+	enum input_enum{
+		NONE = 0;
+		FORWARD = 1;
+		BACKWARD = 2;
+		LEFT = 3;
+		RIGHT = 4;
+		ATTACK = 5;
+		QUIT = 6;
+		INFO = 7;
+		PRINT = 8;
+	}
+	
+	int64 token = 1;
+	int64 player_id = 2;
+	int64 character_id = 3;
+	input_enum command = 4;
+}
+
+message play_out {
+	enum status_enum {
+		FAILURE = 0;
+		SUCCESS = 1;
+		QUIT = 2;
+		DEAD = 3;
+	}
+	int64 character_id = 1;
+	status_enum status = 2;
+	repeated tile tiles = 3;
+	repeated character characters = 4;
+	repeated enemy enemies = 5;
+}
+
+message logout_in {
+	int64 token = 1;
+	int64 player_id = 2;
+	int64 character_id = 3;
+}
+
+message logout_out {
 }
 
 service game_server {
 	rpc GetToken(token_in) returns (token_out) {}
 	rpc Login(login_in) returns (login_out) {}
 	rpc SelectCharacter(select_character_in) returns (select_character_out) {}
+	rpc Play(play_in) returns (play_out) {}
+	rpc Logout(logout_in) returns (logout_out) {}
 }

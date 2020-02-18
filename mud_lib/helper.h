@@ -5,8 +5,11 @@
 #pragma warning(disable: 4251)
 #pragma warning(disable: 4996)
 #include "../protobuf_mud_lib/mud_lib.pb.h"
-#pragma warning(pop)
+#include "../protobuf_mud_lib/mud_lib.grpc.pb.h"
 #include <google/protobuf/util/json_util.h>
+#include <grpcpp/create_channel.h>
+#include <grpcpp/channel.h>
+#pragma warning(pop)
 
 static mud::direction dirNorth = []()
 {
@@ -49,36 +52,39 @@ inline std::string getDirection(mud::direction direction)
 	case mud::direction::SOUTH:
 		return "SOUTH";
 	}
+	return {};
 }
 
 inline mud::direction_direction_enum turnLeft(mud::direction_direction_enum direction)
 {
 	switch (direction)
 	{
-	case mud::direction_direction_enum_EAST:
-		return mud::direction_direction_enum_NORTH;
+	case mud::direction::EAST:
+		return mud::direction::NORTH;
 	case mud::direction::NORTH:
-		return mud::direction_direction_enum_WEST;
+		return mud::direction::WEST;
 	case mud::direction::WEST:
-		return mud::direction_direction_enum_SOUTH;
+		return mud::direction::SOUTH;
 	case mud::direction::SOUTH:
-		return mud::direction_direction_enum_EAST;
+		return mud::direction::EAST;
 	}
+	return {};
 }
 
 inline mud::direction_direction_enum turnRight(mud::direction_direction_enum direction)
 {
 	switch (direction)
 	{
-	case mud::direction_direction_enum_EAST:
-		return mud::direction_direction_enum_SOUTH;
+	case mud::direction::EAST:
+		return mud::direction::SOUTH;
 	case mud::direction::NORTH:
-		return mud::direction_direction_enum_EAST;
+		return mud::direction::EAST;
 	case mud::direction::WEST:
-		return mud::direction_direction_enum_NORTH;
+		return mud::direction::NORTH;
 	case mud::direction::SOUTH:
-		return mud::direction_direction_enum_WEST;
+		return mud::direction::WEST;
 	}
+	return {};
 }
 
 template<typename Entity>
@@ -91,6 +97,19 @@ mud::attribute& getAttribute(Entity& entity, mud::attribute::attribute_name attr
 			return a;
 		}
 	}
+	throw std::runtime_error("attribute not found");
+}
+
+inline std::int64_t getNeighbourId(mud::tile tile, mud::direction::direction_enum dir)
+{
+	for (const auto& field : tile.neighbours())
+	{
+		if (field.neighbour_direction().value() == dir)
+		{
+			return field.neighbour_tile_id();
+		}
+	}
+	return 0;
 }
 
 template<typename Book>

@@ -72,6 +72,8 @@ add_executable(clientCmd
 	${CMAKE_CURRENT_SOURCE_DIR}/clientCmd/main.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/clientCmd/client.h
 	${CMAKE_CURRENT_SOURCE_DIR}/clientCmd/client.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/clientCmd/localGame.h
+	${CMAKE_CURRENT_SOURCE_DIR}/clientCmd/localGame.cpp
 )
 
 target_link_libraries(clientCmd

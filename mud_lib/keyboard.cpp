@@ -42,7 +42,7 @@
 		});
 	}
 
-	bool Keyboard::check_released_input(const input_t& key)
+	bool Keyboard::check_released_input(const mud::play_in::input_enum& key)
 	{
 		std::lock_guard l(mutex_);
 		if (key_released_[key]) {
@@ -62,35 +62,35 @@
 	}
 
 
-std::ostream& operator<< (std::ostream& os, const input_t& key)
+std::ostream& operator<< (std::ostream& os, const mud::play_in::input_enum& key)
 {
 	switch (key)
 	{
-	case input_t::ATTACK:
+	case mud::play_in::ATTACK:
 		os << "ATTACK";
 		break;
-	case input_t::BACKWARD:
+	case mud::play_in::BACKWARD:
 		os << "BACKWARD";
 		break;
-	case input_t::FORWARD:
+	case mud::play_in::FORWARD:
 		os << "FORWARD";
 		break;
-	case input_t::INFO:
+	case mud::play_in::INFO:
 		os << "INFO";
 		break;
-	case input_t::LEFT:
+	case mud::play_in::LEFT:
 		os << "LEFT";
 		break;
-	case input_t::NONE:
+	case mud::play_in::NONE:
 		os << "NONE";
 		break;
-	case input_t::PRINT:
+	case mud::play_in::PRINT:
 		os << "PRINT";
 		break;
-	case input_t::QUIT:
+	case mud::play_in::QUIT:
 		os << "QUIT";
 		break;
-	case input_t::RIGHT:
+	case mud::play_in::RIGHT:
 		os << "RIGHT";
 		break;
 	}

@@ -1,14 +1,15 @@
-
 #include <iostream>
 #include <fstream>
 #include "game.h"
 #include "session.h"
 #include <grpcpp/server_builder.h>
 #include <grpcpp/security/credentials.h>
+#include <mutex>
+#include <thread>
 
 bool registerPlayer(mud::player_book &book)
 {
-	int maxId = 0;
+	std::int64_t maxId = 0;
 	for (const auto& player : book.players())
 	{
 		if (player.id() > maxId) {
@@ -50,8 +51,9 @@ bool registerPlayer(mud::player_book &book)
 		std::ios::out | std::ios::binary);
 	if (!book.SerializeToOstream(&ofs)) {
 		std::cerr << "error writing" << std::endl;
-		return -1;
+		return false;
 	}
+	return true;
 }
 
 void showPlayers()
@@ -81,7 +83,8 @@ int main(int ac, char** av) {
 	std::cout << "starting server!" << std::endl;
 
 	auto pg = std::make_shared<Game>();
-	Session session{ pg };
+	auto m = std::make_shared<std::mutex>();
+	Session session{ m, pg };
 	std::string server_address{ "0.0.0.0:4242" };
 	grpc::ServerBuilder builder{};
 
@@ -91,7 +94,35 @@ int main(int ac, char** av) {
 
 	builder.RegisterService(&session);
 	std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
-	server->Wait();
+
+
+	std::thread t([&server]
+	{
+		server->Wait();
+	});
+
+
+	bool loop = true;
+	auto totalTime = std::chrono::milliseconds(1000);
+	while (loop)
+	{
+		auto startTime = std::chrono::high_resolution_clock::now();
+		m->lock();
+		loop = pg->runOnce();
+		m->unlock();
+		auto endTime = std::chrono::high_resolution_clock::now();
+		std::chrono::duration<double> duration = endTime - startTime;
+		if (totalTime > duration)
+		{
+			std::this_thread::sleep_for(totalTime - duration);
+		}
+		else
+		{
+			std::cerr << "too long..." << std::endl;
+		}
+	}
+
+	t.join();
 
 	return 0;
 }

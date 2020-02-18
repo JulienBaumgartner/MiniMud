@@ -79,3 +79,39 @@ grpc::Status Client::CreateCharacter(std::string name, std::int64_t token, std::
 	*value = sco;
 	return grpc::Status::OK;
 }
+
+grpc::Status Client::Play(std::int64_t token, std::int64_t playerId, std::int64_t characterId,
+						  mud::play_in::input_enum& command, std::shared_ptr<mud::play_out> value)
+{
+	grpc::ClientContext client_context;
+	mud::play_in pi{};
+	mud::play_out po{};
+	pi.set_token(token);
+	pi.set_player_id(playerId);
+	pi.set_character_id(characterId);
+	pi.set_command(command);
+	auto status = stub_->Play(&client_context, pi, &po);
+	if (!status.ok())
+	{
+		throw std::runtime_error("Error during play");
+	}
+	*value = po;
+	return grpc::Status::OK;
+}
+
+grpc::Status Client::Logout(std::int64_t token, std::int64_t playerId, std::int64_t characterId)
+{
+	grpc::ClientContext client_context;
+	mud::logout_in li{};
+	mud::logout_out lo{};
+	li.set_token(token);
+	li.set_player_id(playerId);
+	li.set_character_id(characterId);
+	auto status = stub_->Logout(&client_context, li, &lo);
+	if (!status.ok())
+	{
+		throw std::runtime_error("Error during logout");
+	}
+
+	return grpc::Status::OK;
+}

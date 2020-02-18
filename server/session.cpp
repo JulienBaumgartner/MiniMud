@@ -1,6 +1,6 @@
 #include "session.h"
 
-Session::Session(const std::shared_ptr<Game> g, const std::chrono::duration<double> timeout) : game_(g), timeout_(timeout)
+Session::Session(const std::shared_ptr<std::mutex> m, const std::shared_ptr<Game> g, const std::chrono::duration<double> timeout) : mutex_(m), game_(g), timeout_(timeout)
 {
 
 }
@@ -69,8 +69,9 @@ grpc::Status Session::SelectCharacter(grpc::ServerContext* context, const mud::s
 			}
 			else
 			{
+				mutex_->lock();
 				mud::character character = game_->CreateCharacter(request->name(), player.id());
-
+				mutex_->unlock();
 				response->set_result(mud::select_character_out::OK);
 				*response->mutable_selected_character() = character;
 				token_states_[request->token()].id_character_ = character.id();
@@ -94,12 +95,25 @@ grpc::Status Session::SelectCharacter(grpc::ServerContext* context, const mud::s
 			}
 			if (characterFound)
 			{
-				response->set_result(mud::select_character_out::OK);
-				*response->mutable_selected_character() = character;
-				token_states_[request->token()].id_character_ = character.id();
-				token_states_[request->token()].status_ = state::status::PLAYING;
+				mutex_->lock();
+				bool connected = game_->ConnectCharacter(character.id());
+				mutex_->unlock();
 
-				std::cout << player.name() << " play with " << character.name() << std::endl;
+				if (connected)
+				{
+					response->set_result(mud::select_character_out::OK);
+					*response->mutable_selected_character() = character;
+					token_states_[request->token()].id_character_ = character.id();
+					token_states_[request->token()].status_ = state::status::PLAYING;
+
+					std::cout << player.name() << " play with " << character.name() << std::endl;
+				}
+				else
+				{
+					response->set_result(mud::select_character_out::TILE_OCCUPED);
+					std::cout << player.name() << " want to play with " << character.name() << std::endl;
+				}
+				
 			}
 			else
 			{
@@ -108,6 +122,70 @@ grpc::Status Session::SelectCharacter(grpc::ServerContext* context, const mud::s
 		}
 	}
 
+	return grpc::Status::OK;
+}
+
+grpc::Status Session::Play(grpc::ServerContext* context, const mud::play_in* request, mud::play_out* response)
+{
+	if (token_states_.find(request->token()) != token_states_.end() &&
+		token_states_[request->token()].status_ == state::status::PLAYING) {
+
+		token_states_[request->token()].time_ = std::chrono::system_clock::now();
+
+		game_->charactersInputs[request->character_id()] = request->command();
+
+		if (game_->connectedCharacters.find(request->character_id()) == game_->connectedCharacters.end())
+		{
+			response->set_status(mud::play_out::FAILURE);
+		}
+		else
+		{
+			mud::character& character = *game_->connectedCharacters[request->character_id()];
+			response->set_character_id(request->character_id());
+
+			if (getAttribute(character, mud::attribute::LIFE).value() <= 0)
+			{
+				response->set_status(mud::play_out::DEAD);
+			}
+			else
+			{
+				response->set_status(mud::play_out::SUCCESS);
+			}
+
+
+			*response->add_tiles() = game_->tiles[character.tile_id()];
+			*response->add_characters() = character;
+			for (const auto& field : game_->seeAround(character.tile_id(), 2))
+			{
+				mud::tile tile = game_->tiles[field.first];
+				*response->add_tiles() = tile;
+
+				if (tile.occupant_type() == mud::tile::CHARACTER)
+				{
+					*response->add_characters() = *game_->connectedCharacters[tile.occupant_id()];
+				}
+				else if (tile.occupant_type() == mud::tile::ENEMY)
+				{
+					*response->add_enemies() = game_->enemies[tile.occupant_id()];
+				}
+			}
+
+		}
+
+	}
+	return grpc::Status::OK;
+}
+
+grpc::Status Session::Logout(grpc::ServerContext* context, const mud::logout_in* request, mud::logout_out* response)
+{
+	if (token_states_.find(request->token()) != token_states_.end())
+	{
+		if (token_states_[request->token()].id_character_ != 0)
+		{
+			game_->DisconnectCharacter(token_states_[request->token()].id_character_);
+		}
+		token_states_.erase(token_states_.find(request->token()));
+	}
 	return grpc::Status::OK;
 }
 

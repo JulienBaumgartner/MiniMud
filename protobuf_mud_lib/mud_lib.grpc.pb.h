@@ -68,6 +68,20 @@ class game_server final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mud::select_character_out>> PrepareAsyncSelectCharacter(::grpc::ClientContext* context, const ::mud::select_character_in& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mud::select_character_out>>(PrepareAsyncSelectCharacterRaw(context, request, cq));
     }
+    virtual ::grpc::Status Play(::grpc::ClientContext* context, const ::mud::play_in& request, ::mud::play_out* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mud::play_out>> AsyncPlay(::grpc::ClientContext* context, const ::mud::play_in& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mud::play_out>>(AsyncPlayRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mud::play_out>> PrepareAsyncPlay(::grpc::ClientContext* context, const ::mud::play_in& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mud::play_out>>(PrepareAsyncPlayRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Logout(::grpc::ClientContext* context, const ::mud::logout_in& request, ::mud::logout_out* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mud::logout_out>> AsyncLogout(::grpc::ClientContext* context, const ::mud::logout_in& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mud::logout_out>>(AsyncLogoutRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mud::logout_out>> PrepareAsyncLogout(::grpc::ClientContext* context, const ::mud::logout_in& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mud::logout_out>>(PrepareAsyncLogoutRaw(context, request, cq));
+    }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
@@ -83,6 +97,14 @@ class game_server final {
       virtual void SelectCharacter(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::mud::select_character_out* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SelectCharacter(::grpc::ClientContext* context, const ::mud::select_character_in* request, ::mud::select_character_out* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       virtual void SelectCharacter(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::mud::select_character_out* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void Play(::grpc::ClientContext* context, const ::mud::play_in* request, ::mud::play_out* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Play(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::mud::play_out* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Play(::grpc::ClientContext* context, const ::mud::play_in* request, ::mud::play_out* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void Play(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::mud::play_out* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void Logout(::grpc::ClientContext* context, const ::mud::logout_in* request, ::mud::logout_out* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Logout(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::mud::logout_out* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Logout(::grpc::ClientContext* context, const ::mud::logout_in* request, ::mud::logout_out* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void Logout(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::mud::logout_out* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
     };
     virtual class experimental_async_interface* experimental_async() { return nullptr; }
   private:
@@ -92,6 +114,10 @@ class game_server final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::mud::login_out>* PrepareAsyncLoginRaw(::grpc::ClientContext* context, const ::mud::login_in& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::mud::select_character_out>* AsyncSelectCharacterRaw(::grpc::ClientContext* context, const ::mud::select_character_in& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::mud::select_character_out>* PrepareAsyncSelectCharacterRaw(::grpc::ClientContext* context, const ::mud::select_character_in& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::mud::play_out>* AsyncPlayRaw(::grpc::ClientContext* context, const ::mud::play_in& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::mud::play_out>* PrepareAsyncPlayRaw(::grpc::ClientContext* context, const ::mud::play_in& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::mud::logout_out>* AsyncLogoutRaw(::grpc::ClientContext* context, const ::mud::logout_in& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::mud::logout_out>* PrepareAsyncLogoutRaw(::grpc::ClientContext* context, const ::mud::logout_in& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -117,6 +143,20 @@ class game_server final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mud::select_character_out>> PrepareAsyncSelectCharacter(::grpc::ClientContext* context, const ::mud::select_character_in& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mud::select_character_out>>(PrepareAsyncSelectCharacterRaw(context, request, cq));
     }
+    ::grpc::Status Play(::grpc::ClientContext* context, const ::mud::play_in& request, ::mud::play_out* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mud::play_out>> AsyncPlay(::grpc::ClientContext* context, const ::mud::play_in& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mud::play_out>>(AsyncPlayRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mud::play_out>> PrepareAsyncPlay(::grpc::ClientContext* context, const ::mud::play_in& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mud::play_out>>(PrepareAsyncPlayRaw(context, request, cq));
+    }
+    ::grpc::Status Logout(::grpc::ClientContext* context, const ::mud::logout_in& request, ::mud::logout_out* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mud::logout_out>> AsyncLogout(::grpc::ClientContext* context, const ::mud::logout_in& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mud::logout_out>>(AsyncLogoutRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mud::logout_out>> PrepareAsyncLogout(::grpc::ClientContext* context, const ::mud::logout_in& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mud::logout_out>>(PrepareAsyncLogoutRaw(context, request, cq));
+    }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
@@ -132,6 +172,14 @@ class game_server final {
       void SelectCharacter(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::mud::select_character_out* response, std::function<void(::grpc::Status)>) override;
       void SelectCharacter(::grpc::ClientContext* context, const ::mud::select_character_in* request, ::mud::select_character_out* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       void SelectCharacter(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::mud::select_character_out* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void Play(::grpc::ClientContext* context, const ::mud::play_in* request, ::mud::play_out* response, std::function<void(::grpc::Status)>) override;
+      void Play(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::mud::play_out* response, std::function<void(::grpc::Status)>) override;
+      void Play(::grpc::ClientContext* context, const ::mud::play_in* request, ::mud::play_out* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void Play(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::mud::play_out* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void Logout(::grpc::ClientContext* context, const ::mud::logout_in* request, ::mud::logout_out* response, std::function<void(::grpc::Status)>) override;
+      void Logout(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::mud::logout_out* response, std::function<void(::grpc::Status)>) override;
+      void Logout(::grpc::ClientContext* context, const ::mud::logout_in* request, ::mud::logout_out* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void Logout(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::mud::logout_out* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit experimental_async(Stub* stub): stub_(stub) { }
@@ -149,9 +197,15 @@ class game_server final {
     ::grpc::ClientAsyncResponseReader< ::mud::login_out>* PrepareAsyncLoginRaw(::grpc::ClientContext* context, const ::mud::login_in& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::mud::select_character_out>* AsyncSelectCharacterRaw(::grpc::ClientContext* context, const ::mud::select_character_in& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::mud::select_character_out>* PrepareAsyncSelectCharacterRaw(::grpc::ClientContext* context, const ::mud::select_character_in& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::mud::play_out>* AsyncPlayRaw(::grpc::ClientContext* context, const ::mud::play_in& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::mud::play_out>* PrepareAsyncPlayRaw(::grpc::ClientContext* context, const ::mud::play_in& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::mud::logout_out>* AsyncLogoutRaw(::grpc::ClientContext* context, const ::mud::logout_in& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::mud::logout_out>* PrepareAsyncLogoutRaw(::grpc::ClientContext* context, const ::mud::logout_in& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetToken_;
     const ::grpc::internal::RpcMethod rpcmethod_Login_;
     const ::grpc::internal::RpcMethod rpcmethod_SelectCharacter_;
+    const ::grpc::internal::RpcMethod rpcmethod_Play_;
+    const ::grpc::internal::RpcMethod rpcmethod_Logout_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -162,6 +216,8 @@ class game_server final {
     virtual ::grpc::Status GetToken(::grpc::ServerContext* context, const ::mud::token_in* request, ::mud::token_out* response);
     virtual ::grpc::Status Login(::grpc::ServerContext* context, const ::mud::login_in* request, ::mud::login_out* response);
     virtual ::grpc::Status SelectCharacter(::grpc::ServerContext* context, const ::mud::select_character_in* request, ::mud::select_character_out* response);
+    virtual ::grpc::Status Play(::grpc::ServerContext* context, const ::mud::play_in* request, ::mud::play_out* response);
+    virtual ::grpc::Status Logout(::grpc::ServerContext* context, const ::mud::logout_in* request, ::mud::logout_out* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetToken : public BaseClass {
@@ -223,7 +279,47 @@ class game_server final {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetToken<WithAsyncMethod_Login<WithAsyncMethod_SelectCharacter<Service > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_Play : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Play() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_Play() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Play(::grpc::ServerContext* /*context*/, const ::mud::play_in* /*request*/, ::mud::play_out* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPlay(::grpc::ServerContext* context, ::mud::play_in* request, ::grpc::ServerAsyncResponseWriter< ::mud::play_out>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Logout : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Logout() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_Logout() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Logout(::grpc::ServerContext* /*context*/, const ::mud::logout_in* /*request*/, ::mud::logout_out* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestLogout(::grpc::ServerContext* context, ::mud::logout_in* request, ::grpc::ServerAsyncResponseWriter< ::mud::logout_out>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetToken<WithAsyncMethod_Login<WithAsyncMethod_SelectCharacter<WithAsyncMethod_Play<WithAsyncMethod_Logout<Service > > > > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_GetToken : public BaseClass {
    private:
@@ -299,7 +395,57 @@ class game_server final {
     }
     virtual ::grpc::experimental::ServerUnaryReactor* SelectCharacter(::grpc::experimental::CallbackServerContext* /*context*/, const ::mud::select_character_in* /*request*/, ::mud::select_character_out* /*response*/) { return nullptr; }
   };
-  typedef ExperimentalWithCallbackMethod_GetToken<ExperimentalWithCallbackMethod_Login<ExperimentalWithCallbackMethod_SelectCharacter<Service > > > ExperimentalCallbackService;
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_Play : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_Play() {
+      ::grpc::Service::experimental().MarkMethodCallback(3,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::mud::play_in, ::mud::play_out>(
+          [this](::grpc::experimental::CallbackServerContext* context, const ::mud::play_in* request, ::mud::play_out* response) { return this->Play(context, request, response); }));}
+    void SetMessageAllocatorFor_Play(
+        ::grpc::experimental::MessageAllocator< ::mud::play_in, ::mud::play_out>* allocator) {
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::mud::play_in, ::mud::play_out>*>(
+          ::grpc::Service::experimental().GetHandler(3))
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_Play() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Play(::grpc::ServerContext* /*context*/, const ::mud::play_in* /*request*/, ::mud::play_out* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::experimental::ServerUnaryReactor* Play(::grpc::experimental::CallbackServerContext* /*context*/, const ::mud::play_in* /*request*/, ::mud::play_out* /*response*/) { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_Logout : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_Logout() {
+      ::grpc::Service::experimental().MarkMethodCallback(4,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::mud::logout_in, ::mud::logout_out>(
+          [this](::grpc::experimental::CallbackServerContext* context, const ::mud::logout_in* request, ::mud::logout_out* response) { return this->Logout(context, request, response); }));}
+    void SetMessageAllocatorFor_Logout(
+        ::grpc::experimental::MessageAllocator< ::mud::logout_in, ::mud::logout_out>* allocator) {
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::mud::logout_in, ::mud::logout_out>*>(
+          ::grpc::Service::experimental().GetHandler(4))
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_Logout() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Logout(::grpc::ServerContext* /*context*/, const ::mud::logout_in* /*request*/, ::mud::logout_out* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::experimental::ServerUnaryReactor* Logout(::grpc::experimental::CallbackServerContext* /*context*/, const ::mud::logout_in* /*request*/, ::mud::logout_out* /*response*/) { return nullptr; }
+  };
+  typedef ExperimentalWithCallbackMethod_GetToken<ExperimentalWithCallbackMethod_Login<ExperimentalWithCallbackMethod_SelectCharacter<ExperimentalWithCallbackMethod_Play<ExperimentalWithCallbackMethod_Logout<Service > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetToken : public BaseClass {
    private:
@@ -347,6 +493,40 @@ class game_server final {
     }
     // disable synchronous version of this method
     ::grpc::Status SelectCharacter(::grpc::ServerContext* /*context*/, const ::mud::select_character_in* /*request*/, ::mud::select_character_out* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Play : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Play() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_Play() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Play(::grpc::ServerContext* /*context*/, const ::mud::play_in* /*request*/, ::mud::play_out* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Logout : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Logout() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_Logout() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Logout(::grpc::ServerContext* /*context*/, const ::mud::logout_in* /*request*/, ::mud::logout_out* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -412,6 +592,46 @@ class game_server final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_Play : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Play() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_Play() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Play(::grpc::ServerContext* /*context*/, const ::mud::play_in* /*request*/, ::mud::play_out* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPlay(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Logout : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Logout() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_Logout() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Logout(::grpc::ServerContext* /*context*/, const ::mud::logout_in* /*request*/, ::mud::logout_out* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestLogout(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class ExperimentalWithRawCallbackMethod_GetToken : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -470,6 +690,46 @@ class game_server final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::experimental::ServerUnaryReactor* SelectCharacter(::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/) { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_Play : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_Play() {
+      ::grpc::Service::experimental().MarkMethodRawCallback(3,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          [this](::grpc::experimental::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Play(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_Play() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Play(::grpc::ServerContext* /*context*/, const ::mud::play_in* /*request*/, ::mud::play_out* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::experimental::ServerUnaryReactor* Play(::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/) { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_Logout : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_Logout() {
+      ::grpc::Service::experimental().MarkMethodRawCallback(4,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          [this](::grpc::experimental::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Logout(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_Logout() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Logout(::grpc::ServerContext* /*context*/, const ::mud::logout_in* /*request*/, ::mud::logout_out* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::experimental::ServerUnaryReactor* Logout(::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/) { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetToken : public BaseClass {
@@ -531,9 +791,49 @@ class game_server final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedSelectCharacter(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::mud::select_character_in,::mud::select_character_out>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetToken<WithStreamedUnaryMethod_Login<WithStreamedUnaryMethod_SelectCharacter<Service > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Play : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Play() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler< ::mud::play_in, ::mud::play_out>(std::bind(&WithStreamedUnaryMethod_Play<BaseClass>::StreamedPlay, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_Play() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Play(::grpc::ServerContext* /*context*/, const ::mud::play_in* /*request*/, ::mud::play_out* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedPlay(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::mud::play_in,::mud::play_out>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Logout : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Logout() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler< ::mud::logout_in, ::mud::logout_out>(std::bind(&WithStreamedUnaryMethod_Logout<BaseClass>::StreamedLogout, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_Logout() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Logout(::grpc::ServerContext* /*context*/, const ::mud::logout_in* /*request*/, ::mud::logout_out* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedLogout(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::mud::logout_in,::mud::logout_out>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetToken<WithStreamedUnaryMethod_Login<WithStreamedUnaryMethod_SelectCharacter<WithStreamedUnaryMethod_Play<WithStreamedUnaryMethod_Logout<Service > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetToken<WithStreamedUnaryMethod_Login<WithStreamedUnaryMethod_SelectCharacter<Service > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetToken<WithStreamedUnaryMethod_Login<WithStreamedUnaryMethod_SelectCharacter<WithStreamedUnaryMethod_Play<WithStreamedUnaryMethod_Logout<Service > > > > > StreamedService;
 };
 
 }  // namespace mud
